@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colorful-Noise — Project Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7; --surface: #ffffff; --border: #e2ddd6; --border-soft: #ede9e2;
+      --text: #1a1816; --text-muted: #6b6560; --text-faint: #a09b94;
+      --accent: #c8502a; --accent-light: #f5ede9; --accent-dark: #8f3619;
+      --tag-bg: #f0ece6; --radius: 10px; --radius-lg: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --c1: #e05a5a; --c2: #e07b3a; --c3: #d4b84a; --c4: #5bab6e;
+      --c5: #4a9ab5; --c6: #5a6bbf; --c7: #8b5bbf; --c8: #c45aad;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.7; min-height: 100vh; }
+    .spectrum-bar { height: 4px; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c6), var(--c7), var(--c8)); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+    header { border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 100; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+    .header-logo { font-family: var(--font-display); font-size: 20px; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    nav { display: flex; gap: 4px; }
+    nav a { font-size: 13px; color: var(--text-muted); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+    nav a:hover { background: var(--tag-bg); color: var(--text); }
+
+    .hero { padding: 64px 0 56px; }
+    .hero-headline { margin-bottom: 32px; }
+    .venue-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #fff3e0, #fce4ec); color: var(--accent-dark); font-size: 14px; font-weight: 600; padding: 6px 16px; border-radius: 20px; border: 1px solid #f5c6a0; margin-bottom: 20px; letter-spacing: 0.04em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(200,80,42,0.12); }
+    .venue-badge img.venue-logo { width: 16px; height: 16px; object-fit: contain; display: block; }
+    .venue-badge .venue-star-fallback { font-size: 11px; color: var(--accent); display: none; }
+    h1 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 50px); line-height: 1.15; letter-spacing: -0.02em; color: var(--text); }
+    h1 span.rainbow { background: linear-gradient(90deg, var(--c1), var(--c3), var(--c5), var(--c7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-meta { display: flex; flex-direction: column; gap: 0; }
+    .authors { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; justify-content: center; }
+    .author { font-size: 15px; font-weight: 500; color: var(--text); background: var(--surface); padding: 4px 14px; border-radius: 20px; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.15s, color 0.15s, box-shadow 0.15s; }
+    .author a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; }
+    .author:hover { border-color: var(--accent); color: var(--accent-dark); box-shadow: 0 2px 8px rgba(200,80,42,0.1); }
+    .author-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block; flex-shrink: 0; border: 1.5px solid var(--border); background: var(--tag-bg); }
+    .author-initials { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--text-muted); background: var(--tag-bg); border: 1.5px solid var(--border); letter-spacing: 0; user-select: none; }
+    .affil-row { display: flex; align-items: flex-start; gap: 14px; margin-top: 10px; margin-bottom: 24px; justify-content: center; }
+    .affil-logo img { height: 96px; width: auto; object-fit: contain; opacity: 0.9; display: block; margin-top: 12px; }
+    .affil-logo img:hover { opacity: 1; }
+    .affil-logo-placeholder { height: 96px; padding: 0 14px; border: 1px dashed var(--border); border-radius: var(--radius); display: none; align-items: center; justify-content: center; font-size: 11px; color: var(--text-faint); white-space: nowrap; }
+    .affil-divider { width: 1px; height: 52px; background: var(--border); flex-shrink: 0; margin-top: 14px; }
+    .affil-text { display: flex; flex-direction: column; gap: 3px; margin-top: 0; align-self: center; }
+    .affil-name { font-size: 19px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .affil-inst { font-size: 15px; color: var(--text-muted); line-height: 1.3; }
+    .affil-text a { color: inherit; text-decoration: none; }
+    .affil-text a:hover { color: var(--accent-dark); }
+    .links { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-family: var(--font-body); font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.1s; }
+    .btn:hover { background: var(--tag-bg); border-color: #ccc9c2; transform: translateY(-1px); }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary:hover { background: #333; border-color: #333; }
+    .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* EDIT 1 FIX: center teaser image */
+    .teaser-panel { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .teaser-img-wrap { width: 100%; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
+    .teaser-img-wrap img { display: block; max-width: 100%; height: auto; margin: 0 auto; object-fit: contain; }
+    .teaser-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text-faint); font-size: 13px; padding: 48px 20px; text-align: center; }
+    .teaser-placeholder svg { width: 40px; height: 40px; opacity: 0.3; }
+    .teaser-caption { padding: 12px 20px; font-size: 13px; color: var(--text-faint); line-height: 1.6; border-top: 1px solid var(--border-soft); font-style: italic; }
+
+    .hero-abstract { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 28px; }
+    .motivation-section { padding: 56px 0; border-top: 1px solid var(--border-soft); }
+    section { padding: 56px 0; border-top: 1px solid var(--border-soft); }
+    .section-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .section-tag::before { content: ''; display: inline-block; width: 24px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--c1), var(--c5), var(--c7)); }
+    h2 { font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
+    .body-text { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+
+    /* EDIT 3: Denoising diagram styles */
+    .denoising-diagram { margin-top: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .dn-inner { padding: 28px 32px 24px; display: flex; flex-direction: column; gap: 0; }
+    .dn-row-wrap { display: flex; flex-direction: column; }
+    .dn-row-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .dn-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+    .dn-badge.loose { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+    .dn-badge.strict { background: #fce4ec; color: #880e4f; border: 1px solid #f48fb1; }
+    .dn-row { display: flex; align-items: center; gap: 0; width: 100%; }
+    .dn-cond-col { display: flex; flex-direction: column; align-items: center; gap: 5px; flex-shrink: 0; margin-right: 4px; }
+    .dn-cond-img { border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--tag-bg); flex-shrink: 0; }
+    .dn-cond-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dn-cond-img-ph { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; }
+    .dn-cond-img-ph svg { opacity: 0.25; }
+    .dn-cond-lbl { font-size: 10px; font-weight: 600; text-align: center; line-height: 1.2; }
+    /* horizontal arrow from cond to first step */
+    .dn-h-arrow { display: flex; align-items: center; flex-shrink: 0; }
+    .dn-h-arrow svg { display: block; }
+    /* steps track */
+    .dn-steps { display: flex; align-items: center; flex: 1; }
+    .dn-step-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .dn-top-zone { height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 100%; }
+    .dn-step-box { width: 100%; max-width: 72px; aspect-ratio: 1; border-radius: 8px; background: var(--tag-bg); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .dn-step-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dn-step-box-ph { font-size: 9px; color: var(--text-faint); text-align: center; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .dn-step-box-ph svg { opacity: 0.2; }
+    .dn-step-lbl { font-size: 10px; color: var(--text-faint); margin-top: 5px; font-weight: 500; font-family: Georgia, serif; font-style: italic; }
+    /* inter-step arrows */
+    .dn-step-arrow { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .dn-step-arrow-pad { height: 52px; }
+    /* down arrow into step (strict) */
+    .dn-down-arrow { display: flex; flex-direction: column; align-items: center; }
+    .dn-down-shaft { width: 2px; height: 14px; border-radius: 1px; }
+    .dn-down-head { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; }
+    /* small inject thumb */
+    .dn-inject-thumb { border-radius: 6px; overflow: hidden; border: 1.5px solid var(--border); background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
+    .dn-inject-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dn-inject-thumb-ph { display: flex; align-items: center; justify-content: center; padding: 3px; }
+    .dn-inject-thumb-ph svg { opacity: 0.2; }
+    /* output box */
+    .dn-out-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .dn-out-pad { height: 52px; }
+    .dn-out-box { width: 72px; height: 72px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
+    .dn-out-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .dn-out-box-ph { font-size: 9px; color: var(--text-faint); text-align: center; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .dn-out-box-ph svg { opacity: 0.2; }
+    .dn-out-lbl { font-size: 10px; color: var(--text-faint); font-weight: 600; margin-top: 5px; font-family: Georgia, serif; font-style: italic; }
+    /* divider between rows */
+    .dn-divider { height: 1px; background: var(--border-soft); margin: 22px 0; }
+    /* legend + caption */
+    .dn-legend { display: flex; gap: 20px; flex-wrap: wrap; padding: 12px 32px; border-top: 1px solid var(--border-soft); background: var(--bg); }
+    .dn-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+    .dn-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dn-caption { padding: 12px 32px 18px; font-size: 13px; color: var(--text-faint); line-height: 1.6; border-top: 1px solid var(--border-soft); font-style: italic; }
+
+    .motivation-highlight { margin-top: 20px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 14px; color: var(--accent-dark); line-height: 1.7; }
+
+    /* EDIT 2: overview figure */
+    .overview-panel { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); margin-top: 28px; }
+    .overview-img-wrap { width: 100%; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
+    .overview-img-wrap img { display: block; max-width: 100%; height: auto; margin: 0 auto; object-fit: contain; }
+    .overview-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text-faint); font-size: 13px; padding: 48px 20px; text-align: center; }
+    .overview-placeholder svg { width: 40px; height: 40px; opacity: 0.3; }
+    .overview-caption { padding: 12px 20px; font-size: 13px; color: var(--text-faint); line-height: 1.6; border-top: 1px solid var(--border-soft); font-style: italic; }
+
+    /* frequency demo */
+    .freq-demo-section { padding: 56px 0; border-top: 1px solid var(--border-soft); }
+    .freq-row-labels { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .freq-side-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; }
+    .freq-side-label.lf { color: #2271a3; background: #dff0f7; border: 1px solid #b8d9ea; }
+    .freq-side-label.hf { color: #6139a8; background: #ede5f7; border: 1px solid #d8cef0; }
+    .freq-center-lbl { font-size: 11px; color: var(--text-faint); letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+    .freq-stage { position: relative; width: 100%; height: 680px; }
+    .freq-arrows-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+    .freq-cond-block { position: absolute; top: 50%; display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 20; transition: filter .3s, opacity .3s; }
+    .freq-cond-card { width: 160px; border-radius: 12px; overflow: hidden; border: 2.5px solid var(--border); background: var(--surface); box-shadow: var(--shadow); }
+    .freq-cond-card.lf-card { border-color: #b8d9ea; }
+    .freq-cond-card.hf-card { border-color: #d8cef0; }
+    .freq-cond-img { width: 100%; aspect-ratio: 1/1; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .freq-cond-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .freq-cond-footer { padding: 6px 8px 7px; text-align: center; border-top: 1px solid var(--border-soft); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+    .freq-cond-card.lf-card .freq-cond-footer { color: #4a9ab5; }
+    .freq-cond-card.hf-card .freq-cond-footer { color: #8b5bbf; }
+    .freq-cond-desc { font-size: 12px; color: var(--text-muted); text-align: center; max-width: 162px; line-height: 1.4; margin-top: 2px; }
+    .freq-cond-block.freq-blur { filter: blur(3px); opacity: 0.35; }
+    .freq-cond-block.freq-cond-active { filter: none; opacity: 1; z-index: 25; }
+    .freq-out-card { position: absolute; width: 148px; border-radius: 8px; overflow: visible; border: 1.5px solid var(--border); background: var(--surface); box-shadow: 0 1px 4px rgba(0,0,0,.05); cursor: pointer; z-index: 10; transition: transform .32s cubic-bezier(.2,0,.2,1), box-shadow .32s, opacity .32s, filter .32s; }
+    .freq-out-card.lf-out { border-color: #b8d9ea; }
+    .freq-out-card.hf-out { border-color: #d8cef0; }
+    .freq-out-card.freq-blurred { filter: blur(4px); opacity: 0.15; }
+    .freq-out-card.freq-hovered { transform: scale(1.72) translateY(-4px) !important; box-shadow: 0 20px 50px rgba(0,0,0,.22); z-index: 50; opacity: 1 !important; filter: none !important; }
+    .freq-out-img-wrap { width: 100%; aspect-ratio: 1/1; background: var(--tag-bg); overflow: hidden; border-radius: 6px 6px 0 0; position: relative; display: flex; align-items: center; justify-content: center; }
+    .freq-out-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .freq-out-footer { padding: 4px 6px 5px; font-size: 9px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; text-align: center; border-top: 1px solid var(--border-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .freq-out-card.lf-out .freq-out-footer { color: #4a9ab5; }
+    .freq-out-card.hf-out .freq-out-footer { color: #8b5bbf; }
+    .freq-prompt-overlay { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: rgba(26,24,22,0.92); color: #fff; font-family: 'Caveat', cursive; font-size: 16px; font-weight: 500; line-height: 1.4; padding: 9px 14px; border-radius: 10px; width: 190px; text-align: center; opacity: 0; pointer-events: none; transition: opacity .22s; z-index: 70; white-space: normal; }
+    .freq-prompt-overlay::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: rgba(26,24,22,0.92); }
+    .freq-out-card.freq-hovered .freq-prompt-overlay { opacity: 1; }
+    .freq-ph-icon { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 9px; color: var(--text-faint); text-align: center; padding: 6px; background: var(--tag-bg); }
+    .freq-insight { margin-top: 20px; padding: 12px 16px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 14px; color: var(--accent-dark); line-height: 1.7; }
+    @keyframes freqFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    .video-wrapper { margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
+    .video-placeholder { width: 100%; aspect-ratio: 16/9; background: #111; display: flex; align-items: center; justify-content: center; gap: 12px; color: rgba(255,255,255,0.5); font-size: 14px; }
+    .play-btn { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; }
+    .play-btn svg { width: 20px; height: 20px; fill: white; margin-left: 3px; }
+    .video-caption { padding: 12px 20px; font-size: 13px; color: var(--text-faint); }
+
+    .gallery-section-block { margin-top: 48px; }
+    .gallery-section-block:first-child { margin-top: 0; }
+    .gallery-section-title { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 24px); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
+    .gallery-section-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .toggle-grid { display: grid; gap: 6px; }
+    .toggle-grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .toggle-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .toggle-card { position: relative; overflow: hidden; cursor: pointer; user-select: none; border-radius: 4px; }
+    .toggle-card:hover .img-input, .toggle-card:hover .img-result { transform: scale(1.025); }
+    .toggle-card-img-wrap { width: 100%; aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
+    .toggle-card-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .img-input { opacity: 1; z-index: 2; transition: opacity 0.55s linear, transform 0.3s ease; }
+    .img-result { opacity: 0; z-index: 3; transition: opacity 0.55s linear, transform 0.3s ease; }
+    .toggle-card.showing-result .img-input { opacity: 0; }
+    .toggle-card.showing-result .img-result { opacity: 1; }
+    .global-toggle-indicator { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 6px 8px 6px 6px; box-shadow: var(--shadow); user-select: none; }
+    .subsection-toggle-indicator { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 6px 8px 6px 6px; box-shadow: var(--shadow); user-select: none; }
+    .gti-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 14px; border-radius: 100px; transition: background 0.3s, color 0.3s, transform 0.2s; }
+    .gti-pill-input { background: var(--text); color: var(--bg); }
+    .gti-pill-result { background: var(--tag-bg); color: var(--text-faint); }
+    .results-showing-result .gti-pill-input { background: var(--tag-bg); color: var(--text-faint); }
+    .results-showing-result .gti-pill-result { background: var(--accent); color: #fff; }
+    .gti-label { font-size: 12px; color: var(--text-faint); padding: 0 6px; }
+    .gti-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: background 0.3s; flex-shrink: 0; }
+    .results-showing-result .gti-dot { background: var(--accent); }
+    .toggle-card-label { padding: 4px 4px 2px; font-family: 'Caveat', cursive; font-size: 18px; font-weight: 500; color: var(--text-muted); text-align: center; white-space: normal; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .toggle-row-prompt { grid-column: 1 / -1; font-family: 'Caveat', cursive; font-size: 19px; font-weight: 500; color: var(--text-muted); padding: 10px 4px 4px; border-top: 1px solid var(--border-soft); line-height: 1.4; }
+    .toggle-row-prompt:first-child { border-top: none; padding-top: 0; }
+    .img-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: var(--text-faint); text-align: center; padding: 12px; pointer-events: none; z-index: 4; background: var(--bg); }
+    .img-ph svg { width: 24px; height: 24px; opacity: 0.3; }
+    .img-ph code { font-size: 10px; background: var(--tag-bg); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
+    .gallery-divider { height: 1px; background: var(--border-soft); margin: 48px 0; }
+    .app-subsection { margin-top: 48px; }
+    .app-subsection:first-child { margin-top: 0; }
+    .app-subsection-title { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 24px); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
+    .app-subsection-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    /* ── Stylization Studio ── */
+    .sty-studio { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
+    .sty-main-row { display: grid; grid-template-columns: 120px 1fr 120px; gap: 0; padding: 28px 20px 20px; align-items: start; }
+    .sty-content-strip, .sty-style-strip { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+    .sty-strip-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-faint); margin-bottom: 4px; }
+    #cs-content-opts, #cs-style-opts { display: flex; flex-direction: column; gap: 7px; align-items: center; }
+    .sty-content-opt, .sty-style-opt { width: 108px; aspect-ratio: 1; border-radius: 10px; overflow: hidden; border: 2.5px solid transparent; cursor: pointer; transition: border-color .18s, transform .15s, box-shadow .18s; position: relative; flex-shrink: 0; }
+    .sty-content-opt img, .sty-style-opt img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sty-content-opt:hover, .sty-style-opt:hover { transform: scale(1.04); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+    .sty-content-opt.selected, .sty-style-opt.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .sty-content-opt .cs-check, .sty-style-opt .cs-check { position: absolute; top: 5px; right: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; }
+    .sty-content-opt.selected .cs-check, .sty-style-opt.selected .cs-check { display: flex; }
+    .cs-check svg { width: 9px; height: 9px; stroke: white; stroke-width: 2.5; fill: none; }
+    .sty-result-col { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 12px; }
+    .sty-result-frame { width: 100%; max-width: 280px; aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; background: var(--tag-bg); border: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+    .sty-result-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-faint); font-size: 13px; text-align: center; padding: 20px; position: absolute; inset: 0; }
+    .sty-compare-row { display: flex; align-items: center; }
+    .sty-cn-toggle { display: inline-flex; align-items: center; background: var(--tag-bg); border: 1px solid var(--border); border-radius: 100px; padding: 3px; gap: 2px; box-shadow: var(--shadow); user-select: none; position: relative; }
+    .sty-cn-bg { position: absolute; top: 3px; bottom: 3px; border-radius: 100px; background: var(--text); transition: left .25s cubic-bezier(.4,0,.2,1), width .25s cubic-bezier(.4,0,.2,1); z-index: 0; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
+    .sty-cn-opt { position: relative; z-index: 1; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-faint); display: flex; align-items: center; gap: 5px; transition: color .2s; white-space: nowrap; }
+    .sty-cn-opt.active { color: #fff; }
+    .sty-interp-row { border-top: 1px solid var(--border-soft); background: var(--bg); padding: 20px 24px 24px; }
+    .sty-interp-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+    .sty-interp-title { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .08em; }
+    .sty-interp-hint { font-size: 12px; color: var(--text-faint); font-style: italic; }
+    .sty-interp-body { display: grid; grid-template-columns: 80px 1fr 80px; gap: 14px; align-items: start; }
+    .sty-interp-anchor-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .sty-interp-anchor { width: 76px; height: 76px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); background: var(--tag-bg); }
+    .sty-interp-anchor img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sty-interp-anchor-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .sty-interp-center { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .sty-interp-viewer { width: 100%; aspect-ratio: 16/7; border-radius: var(--radius-lg); overflow: hidden; background: var(--tag-bg); border: 1px solid var(--border); position: relative; box-shadow: var(--shadow); }
+    .sty-interp-viewer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s; pointer-events: none; }
+    .sty-interp-viewer img.active { opacity: 1; }
+    .sty-slider-wrap { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+    .sty-slider-labels { display: flex; justify-content: space-between; align-items: center; padding: 0 2px; }
+    .sty-interp-content-row { display: flex; align-items: center; gap: 12px; width: 100%; }
+    .sty-interp-content-opts { display: flex; gap: 8px; flex-wrap: wrap; }
+    .sty-interp-content-opt { width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 2.5px solid transparent; cursor: pointer; transition: border-color .18s, transform .15s; flex-shrink: 0; }
+    .sty-interp-content-opt img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sty-interp-content-opt:hover { transform: scale(1.08); }
+    .sty-interp-content-opt.selected { border-color: var(--accent); }
+    .bibtex-box { background: #1a1816; color: #c8c3ba; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7; padding: 24px 28px; border-radius: var(--radius-lg); position: relative; overflow: auto; margin-top: 20px; }
+    .bibtex-box .kw { color: #c8502a; }
+    .bibtex-box .field { color: #8ab4f8; }
+    .copy-btn { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #aaa; border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; font-family: var(--font-body); transition: background 0.15s; }
+    .copy-btn:hover { background: rgba(255,255,255,0.14); }
+    footer { border-top: 1px solid var(--border); padding: 28px 0; font-size: 13px; color: var(--text-faint); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.6s ease both; }
+    .fade-up-d1 { animation-delay: 0.1s; }
+    .fade-up-d2 { animation-delay: 0.2s; }
+    .fade-up-d3 { animation-delay: 0.3s; }
+    .fade-up-d4 { animation-delay: 0.4s; }
+    @media (max-width: 900px) {
+      .toggle-grid-cols-4, .toggle-grid-cols-5 { grid-template-columns: repeat(3, 1fr); }
+      .cs-grid { grid-template-columns: 1fr; }
+      .cs-content-col { grid-row: auto; } .cs-style-col { grid-row: auto; } .cs-result-col { grid-row: auto; }
+      .cs-style-options { grid-template-columns: repeat(5, 1fr); }
+      .interp-anchor { width: 120px; }
+      nav { display: none; }
+      .container { padding: 0 20px; }
+      .freq-stage { height: 740px; }
+      .dn-inner { padding: 18px 16px 16px; }
+    }
+    @media (max-width: 560px) {
+      .toggle-grid-cols-4, .toggle-grid-cols-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="spectrum-bar"></div>
+<header>
+  <div class="container header-inner">
+    <a class="header-logo" href="#">Colorful-Noise</a>
+    <nav>
+      <a href="#motivation">Motivation</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#applications">Applications</a>
+      <a href="#bibtex">BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-headline fade-up">
+      <div class="venue-badge">
+        <img src="assets/sigg_logo.png" alt="SIGGRAPH" class="venue-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block';" />
+        <span class="venue-star-fallback">&#9733;</span>
+        SIGGRAPH 2026
+      </div>
+      <h1><span class="rainbow">Colorful-Noise:</span> Training-Free Low-Frequency Noise Manipulation for Color-Based Conditional Image Generation</h1>
+    </div>
+    <div class="hero-meta fade-up fade-up-d1">
+
+      <!-- Authors row: names centered -->
+      <div class="authors">
+        <span class="author" style="background:#fce8e4;border-color:#e09484;">
+          <a href="https://nadavc220.github.io/" target="_blank">Nadav Z. Cohen</a>
+        </span>
+        <span class="author" style="background:#e4f2e4;border-color:#82bc82;">
+          <a href="https://ofir1080.github.io/personal-webpage/" target="_blank">Ofir Abramovich</a>
+        </span>
+        <span class="author" style="background:#e4ecfa;border-color:#7fa4d8;">
+          <a href="https://faculty.runi.ac.il/arik/site/index.html" target="_blank">Ariel Shamir</a>
+        </span>
+      </div>
+
+      <!-- Affiliation row: logo + lab name + institution -->
+      <div class="affil-row">
+        <div class="affil-logo">
+          <img src="assets/lab_logo_v1.png" alt="Canvas Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="affil-logo-placeholder">Lab logo</div>
+        </div>
+        <div class="affil-divider"></div>
+        <div class="affil-text">
+          <span class="affil-name"><a href="https://canvas-lab.org/" target="_blank">Canvas Lab</a></span>
+          <span class="affil-inst"><a href="https://canvas-lab.org/" target="_blank">Reichman University</a></span>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="links">
+        <a class="btn btn-primary" href="https://arxiv.org/abs/2605.00548">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+          Paper (Arxiv)
+        </a>
+        <a class="btn" href="https://github.com/Nadavc220/colorful_noise">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          Code
+        </a>
+        <a class="btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Video
+        </a>
+      </div>
+    </div>
+
+    <!-- EDIT 1: teaser panel with centered image -->
+    <div class="teaser-panel fade-up fade-up-d2" style="margin-top: 16px;">
+      <div class="teaser-img-wrap">
+        <img src="assets/teaser.png" alt="Teaser" />
+      </div>
+      <div class="teaser-caption">Fig. 1: Given a low-frequency color prior (left), our method steers the global palette and composition of the generated outputs (right) across diverse prompts &mdash; without any training or fine-tuning.</div>
+    </div>
+
+    <p class="hero-abstract fade-up fade-up-d3" style="margin-top: 36px;">
+      Text-to-image diffusion models generate images by gradually converting white Gaussian noise into a natural image. White Gaussian noise is well suited for producing diverse outputs from a single text prompt due to its absence of structure. However, this very property limits control over, and predictability of, specific visual attributes, as the noise is not human-interpretable. In this work, we investigate the characteristics of the input noise in diffusion models. We show that, although all frequencies in white Gaussian noise have comparable statistical energy, low-frequency components primarily determine the image&#8217;s global structure and color composition, while high-frequency components control finer details. Building on this observation, we demonstrate that simple manipulations of the low-frequency noise using low-frequency image priors can effectively condition the generation process to reconstruct these low-frequency visual cues. This allows us to define a simple, training-free method with minimal overhead that steers overall image structure and color, while letting high-frequency components freely emerge as fine details, enabling variability across generated outputs.
+    </p>
+  </div>
+</div>
+
+<!-- Motivation -->
+<div id="motivation" class="motivation-section">
+  <div class="container">
+    <p class="section-tag">Motivation</p>
+    <h2>Loose Conditioning vs. Strict Conditioning</h2>
+    <p class="body-text">
+      Visual conditioning methods differ fundamentally in how tightly they constrain the generation process. <em>Strict</em> conditions (edges, depth, pose) lock in fine structural details but require specialized models and limit creative diversity. <em>Loose</em> conditions &mdash; such as rough color sketches &mdash; preserve high-level intent while leaving room for the model to freely generate fine details, enabling richer variability from a single input.
+    </p>
+
+    <!-- EDIT 3: Denoising process diagram (built by buildDenoisingDiagram()) -->
+    <div class="denoising-diagram">
+      <div class="dn-inner" id="dn-inner"><!-- JS fills this --></div>
+      <div class="dn-legend">
+        <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#4a9ab5;"></div><span>Loose &mdash; prior injected once at x<sub>T</sub></span></div>
+        <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#c8502a;"></div><span>Strict &mdash; signal injected at every step</span></div>
+      </div>
+      <div class="dn-caption">Fig. 2: <strong>Top row (Loose):</strong> The color/structure prior enters only at the first (noisiest) step x<sub>T</sub>, steering global palette and composition while fine details remain free. <strong>Bottom row (Strict):</strong> The conditioning signal (e.g. edge map) is injected at <em>every</em> denoising step, tightly locking structural detail throughout the full trajectory.</div>
+    </div>
+
+    <div class="motivation-highlight" style="margin-top: 32px;">
+      Key insight: Low-frequency conditions preserve high-level structure and color intent while leaving enough freedom for diverse, creative, and user-driven generation &mdash; with zero additional training.
+    </div>
+  </div>
+</div>
+
+<!-- Frequency Demo -->
+<div class="freq-demo-section" id="freq-demo">
+  <div class="container">
+    <p class="section-tag">Frequency Analysis</p>
+    <h2>Low-Frequency vs. High-Frequency Conditioning</h2>
+    <p class="body-text" style="margin-bottom: 28px;">
+      Low-frequency components in the input noise determine global color and structure, while high-frequency components govern fine details.
+      Conditioning on <strong style="font-weight:500;color:#2271a3;">low frequencies</strong> steers the overall scene composition and palette &mdash; outputs stay coherent across different prompts.
+      Conditioning on <strong style="font-weight:500;color:#6139a8;">high frequencies</strong> only affects fine texture &mdash; global structure varies freely. Hover over any output to see its prompt.
+    </p>
+    <div class="freq-row-labels">
+      <span class="freq-side-label lf">Low-frequency outputs</span>
+      <span class="freq-center-lbl">Conditions</span>
+      <span class="freq-side-label hf">High-frequency outputs</span>
+    </div>
+    <div class="freq-stage" id="freq-stage">
+      <svg class="freq-arrows-svg" id="freq-arrow-svg">
+        <defs>
+          <marker id="freq-mlf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#4a9ab5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="freq-mhf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#8b5bbf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="freq-cond-block" id="freq-cond-lf">
+        <div class="freq-cond-card lf-card">
+          <div class="freq-cond-img">
+            <div class="freq-ph-icon" id="freq-cond-lf-ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+            <img id="freq-cond-lf-img" style="display:none" alt="Low-freq condition">
+          </div>
+          <div class="freq-cond-footer" id="freq-cond-lf-footer">Low-freq prior</div>
+        </div>
+        <div class="freq-cond-desc" id="freq-cond-lf-desc">Color + structure condition</div>
+      </div>
+      <div class="freq-cond-block" id="freq-cond-hf">
+        <div class="freq-cond-card hf-card">
+          <div class="freq-cond-img">
+            <div class="freq-ph-icon" id="freq-cond-hf-ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+            <img id="freq-cond-hf-img" style="display:none" alt="High-freq condition">
+          </div>
+          <div class="freq-cond-footer" id="freq-cond-hf-footer">High-freq detail</div>
+        </div>
+        <div class="freq-cond-desc" id="freq-cond-hf-desc">Edge + texture condition</div>
+      </div>
+    </div>
+    <div class="freq-insight" id="freq-insight"></div>
+  </div>
+</div>
+
+<!-- EDIT 2: Method — overview.png as a figure panel -->
+<section id="method">
+  <div class="container">
+    <p class="section-tag">Method</p>
+    <h2>How does it work?</h2>
+    <p class="body-text">Our approach manipulates the low-frequency components of the initial Gaussian noise before the denoising process begins. By replacing or blending the low-frequency bands of the noise with a downsampled color prior, the diffusion model&#8217;s generation is steered toward the desired palette and composition &mdash; without any retraining, fine-tuning, or additional model components. The high-frequency noise bands remain random, ensuring diversity in fine detail across different seeds and prompts.</p>
+
+    <div class="overview-panel">
+      <div class="overview-img-wrap">
+        <img src="assets/overview.png" alt="Method overview" />
+      </div>
+      <div class="overview-caption">Fig. 3: Overview of Colorful-Noise. Given an input color prior, we extract its low-frequency component via frequency decomposition and inject it into the initial noise tensor. The modified noise is fed directly into a standard text-to-image diffusion model &mdash; no changes to the model or sampling procedure required.</div>
+    </div>
+
+    <!-- <div class="video-wrapper" style="margin-top:24px;">
+      <div class="video-placeholder">
+        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+        <span>Video placeholder &mdash; replace with &lt;video&gt; or YouTube embed</span>
+      </div>
+      <div class="video-caption">Fig. 4: Video walkthrough of the method.</div> -->
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section id="results">
+  <div class="container" id="results-container">
+    <p class="section-tag">Results &amp; Examples</p>
+    <h2>Qualitative results</h2>
+    <div class="gallery-section-block" id="color-variation">
+      <h3 class="gallery-section-title">Color Variation</h3>
+      <p class="gallery-section-desc">The same structural input conditioned on different color priors. Low-frequency hue manipulation steers the global palette while preserving layout and fine detail.</p>
+      <div class="subsection-toggle-indicator" id="toggle-color">
+        <span class="gti-pill gti-pill-input">Input</span>
+        <span class="gti-dot"></span>
+        <span class="gti-label">click any image to toggle</span>
+        <span class="gti-dot"></span>
+        <span class="gti-pill gti-pill-result">Result</span>
+      </div>
+      <div class="toggle-grid toggle-grid-cols-5" id="grid-color"></div>
+    </div>
+    <div class="gallery-divider"></div>
+    <div class="gallery-section-block" id="prompt-variation">
+      <h3 class="gallery-section-title">Prompt Variation</h3>
+      <p class="gallery-section-desc">The same input noise conditioned on different text prompts. Global color and structure remain consistent while semantic content shifts according to each prompt.</p>
+      <div class="subsection-toggle-indicator" id="toggle-prompt">
+        <span class="gti-pill gti-pill-input">Input</span>
+        <span class="gti-dot"></span>
+        <span class="gti-label">click any image to toggle</span>
+        <span class="gti-dot"></span>
+        <span class="gti-pill gti-pill-result">Result</span>
+      </div>
+      <div class="toggle-grid toggle-grid-cols-5" id="grid-prompt"></div>
+    </div>
+    <div class="gallery-divider"></div>
+    <div class="gallery-section-block" id="seed-variation">
+      <h3 class="gallery-section-title">Seed Variation</h3>
+      <p class="gallery-section-desc">Multiple outputs from the same input and prompt, sampled with different high-frequency noise seeds. Fine details vary while the overall structure and color remain anchored to the condition.</p>
+      <div class="subsection-toggle-indicator" id="toggle-seed">
+        <span class="gti-pill gti-pill-input">Input</span>
+        <span class="gti-dot"></span>
+        <span class="gti-label">click any image to toggle</span>
+        <span class="gti-dot"></span>
+        <span class="gti-pill gti-pill-result">Result</span>
+      </div>
+      <div class="toggle-grid toggle-grid-cols-5" id="grid-seed"></div>
+    </div>
+    <div class="gallery-divider"></div>
+    <div class="gallery-section-block" id="general-results">
+      <h3 class="gallery-section-title">Additional Results</h3>
+      <p class="gallery-section-desc">A broader gallery of inputs and their generated outputs across diverse subjects, prompts, and color conditions.</p>
+      <div class="subsection-toggle-indicator" id="toggle-general">
+        <span class="gti-pill gti-pill-input">Input</span>
+        <span class="gti-dot"></span>
+        <span class="gti-label">click any image to toggle</span>
+        <span class="gti-dot"></span>
+        <span class="gti-pill gti-pill-result">Result</span>
+      </div>
+      <div class="toggle-grid toggle-grid-cols-5" id="grid-general"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Applications -->
+<!-- <section id="applications">
+  <div class="container">
+    <p class="section-tag">Additional Applications</p>
+    <h2>Beyond Generation</h2>
+    <p class="body-text">Our low-frequency noise manipulation framework extends naturally to downstream tasks. Below we demonstrate two applications enabled by the same core mechanism: image-based style alignment and color-preserving stylization.</p>
+    <div class="app-subsection" id="app-style-alignment">
+      <h3 class="app-subsection-title">Image-Based Style Alignment</h3>
+      <p class="app-subsection-desc">Given a reference image, our method extracts its low-frequency color and tonal signature and injects it into the generation process. The output inherits the overall feel and palette of the reference while remaining true to the text prompt and input structure.</p>
+      <div class="global-toggle-indicator" id="app-toggle-indicator" style="margin-top: 12px;">
+        <span class="gti-pill gti-pill-input" id="app-gti-input">Input</span>
+        <span class="gti-dot" id="app-gti-dot"></span>
+        <span class="gti-label">click any image to toggle</span>
+        <span class="gti-dot" id="app-gti-dot2"></span>
+        <span class="gti-pill gti-pill-result" id="app-gti-result">Result</span>
+      </div>
+      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-1"></div></div>
+      <div style="height:24px;"></div>
+      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-2"></div></div>
+      <div style="height:24px;"></div>
+      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-3"></div></div>
+      <div style="height:24px;"></div>
+      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-4"></div></div>
+    </div>
+    <div class="gallery-divider"></div>
+    <div class="app-subsection" id="app-stylization">
+      <h3 class="app-subsection-title">Color-Preserving Stylization</h3>
+      <p class="app-subsection-desc">Transfer the artistic style of a reference painting onto a content image while faithfully preserving the original color palette. Choose a content image and a style image to see the result, or explore seamless interpolation between two styles.</p>
+      <div class="sty-studio"> -->
+
+        <!-- Row 1: content strip | result viewer | style strip -->
+        <!-- <div class="sty-main-row">
+
+          <div class="sty-content-strip">
+            <div class="sty-strip-label">Content</div>
+            <div id="cs-content-opts"></div>
+          </div>
+
+          <div class="sty-result-col">
+            <div class="sty-result-frame" id="cs-result-img-wrap">
+              <div class="sty-result-ph" id="cs-result-empty">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+                <span>Pick content &amp; style</span>
+              </div>
+              <img id="cs-result-img" style="display:none;width:100%;height:100%;object-fit:cover;" alt="Stylized result" />
+            </div>
+            <div class="sty-compare-row">
+              <div class="sty-cn-toggle" id="cn-toggle">
+                <div class="sty-cn-bg" id="cn-toggle-bg"></div>
+                <div class="sty-cn-opt active" id="cn-opt-on" onclick="setCnMode('on')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+                  With Colorful-Noise
+                </div>
+                <div class="sty-cn-opt" id="cn-opt-off" onclick="setCnMode('off')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="2" y1="2" x2="22" y2="22"/><path d="M12 7a5 5 0 0 1 4.9 6M6.7 6.7A5 5 0 0 0 12 17a5 5 0 0 0 3.3-1.3"/></svg>
+                  Without
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sty-style-strip">
+            <div class="sty-strip-label">Style</div>
+            <div id="cs-style-opts"></div>
+          </div>
+
+        </div> -->
+
+        <!-- Row 2: interpolation -->
+        <!-- <div class="sty-interp-row">
+          <div class="sty-interp-header">
+            <span class="sty-interp-title">Style Interpolation</span>
+            <span class="sty-interp-hint">drag the slider to blend between two styles</span>
+          </div>
+          <div class="sty-interp-body">
+            <div class="sty-interp-anchor-col">
+              <div class="sty-interp-anchor" id="interp-anchor-a"></div>
+              <div class="sty-interp-anchor-lbl" style="color:var(--c5);">Style A</div>
+            </div>
+            <div class="sty-interp-center">
+              <div class="sty-interp-viewer" id="interp-viewer">
+                <div class="interp-viewer-ph" id="interp-viewer-ph">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
+                  <span>Drag the slider</span>
+                </div>
+              </div>
+              <div class="sty-slider-wrap">
+                <div class="interp-slider-track" id="interp-slider-track">
+                  <div class="interp-slider-bg"></div>
+                  <div class="interp-slider-fill" id="interp-slider-fill" style="width:0%"></div>
+                  <div class="interp-slider-thumb" id="interp-slider-thumb" style="left:0%"></div>
+                </div>
+                <div class="sty-slider-labels">
+                  <span style="color:var(--c5);font-weight:600;font-size:11px;">Style A</span>
+                  <span id="interp-step-indicator" style="font-size:11px;color:var(--text-faint);"></span>
+                  <span style="color:var(--c7);font-weight:600;font-size:11px;">Style B</span>
+                </div>
+              </div>
+              <div class="sty-interp-content-row">
+                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);">Content</span>
+                <div id="interp-content-opts" class="sty-interp-content-opts"></div>
+              </div>
+            </div>
+            <div class="sty-interp-anchor-col">
+              <div class="sty-interp-anchor" id="interp-anchor-b"></div>
+              <div class="sty-interp-anchor-lbl" style="color:var(--c7);">Style B</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- BibTeX -->
+<section id="bibtex">
+  <div class="container">
+    <p class="section-tag">Citation</p>
+    <h2>BibTeX</h2>
+    <div class="bibtex-box" id="bibtex-box">
+      <button class="copy-btn" onclick="copyBibtex()">Copy</button>
+<!-- <pre><span class="kw">@inproceedings</span>{cohen2026colorfullnoise,
+  <span class="field">title</span>     = {Colorful-Noise: Training-Free Low-Frequency Noise Manipulation for Color-Based Conditional Image Generation},
+  <span class="field">author</span>    = {Cohen, Nadav Z. and Abramovich, Ofir and Shamir, Ariel},
+  <span class="field">booktitle</span> = {ACM SIGGRAPH 2026 Conference Proceedings},
+  <span class="field">year</span>      = {2026},
+  <span class="field">url</span>       = {https://arxiv.org/abs/XXXX.XXXXX}
+}</pre> -->
+<pre><span class="kw">@misc</span>{cohen2026colorfulnoise,
+  <span class="field">title</span>          = {Colorful-Noise: Training-Free Low-Frequency Noise Manipulation for Color-Based Conditional Image Generation},
+  <span class="field">author</span>         = {Nadav Z. Cohen and Ofir Abramovich and Ariel Shamir},
+  <span class="field">year</span>           = {2026},
+  <span class="field">eprint</span>         = {2605.00548},
+  <span class="field">archivePrefix</span>  = {arXiv},
+  <span class="field">primaryClass</span>   = {cs.CV},
+  <span class="field">doi</span>            = {https://doi.org/10.1145/3799902.3811104},
+  <span class="field">url</span>            = {https://arxiv.org/abs/2605.00548}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<div class="spectrum-bar"></div>
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+    <span>&copy; 2026 Cohen, Abramovich &amp; Shamir. All rights reserved.</span>
+    <span>Canvas Lab, Reichman University</span>
+  </div>
+</footer>
+
+<script>
+/* ─── EDIT 3: Build denoising process diagram ─── */
+function buildDenoisingDiagram() {
+  const container = document.getElementById('dn-inner');
+  const N = 5;
+  const STEP = 150;    // denoising step box size (bigger)
+  const COND = 110;    // conditioning image size (bigger)
+  const TOP_H = COND + 8;
+
+  const EXAMPLE_IMG = 'assets/low_vs_high/bear_low.png';
+
+  const PH = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>';
+
+  function imgEl(src) {
+    const el = document.createElement('img');
+    el.src = src;
+    el.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;';
+    el.onerror = function(){ this.style.display='none'; };
+    return el;
+  }
+
+  function makeCondBox(src, color) {
+    const box = document.createElement('div');
+    box.style.cssText = 'width:'+COND+'px;height:'+COND+'px;border-radius:10px;border:2.5px solid '+color
+      +';background:var(--tag-bg);overflow:hidden;display:flex;align-items:center;justify-content:center;'
+      +'flex-shrink:0;cursor:default;position:relative;z-index:1;'
+      +'transition:transform 0.22s cubic-bezier(0.2,0,0.2,1),box-shadow 0.22s;';
+    box.appendChild(imgEl(src));
+    box.addEventListener('mouseenter', function(){
+      this.style.transform='scale(1.5)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.25)'; this.style.zIndex='40';
+    });
+    box.addEventListener('mouseleave', function(){
+      this.style.transform=''; this.style.boxShadow=''; this.style.zIndex='1';
+    });
+    return box;
+  }
+
+  function makeTextLabel(line1, line2, color) {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'padding:7px 11px;border-radius:9px;border:2px solid '+color
+      +';background:var(--surface);display:flex;flex-direction:column;align-items:center;';
+    const l1 = document.createElement('div');
+    l1.style.cssText = 'font-size:11px;font-weight:700;color:'+color+';text-align:center;line-height:1.3;white-space:nowrap;';
+    l1.textContent = line1;
+    const l2 = document.createElement('div');
+    l2.style.cssText = 'font-size:10px;font-weight:500;color:'+color+';text-align:center;line-height:1.3;opacity:0.7;white-space:nowrap;';
+    l2.textContent = line2;
+    wrap.appendChild(l1); wrap.appendChild(l2);
+    return wrap;
+  }
+
+  function makeStepBox(src) {
+    const b = document.createElement('div');
+    b.style.cssText = 'width:'+STEP+'px;height:'+STEP+'px;border-radius:10px;background:var(--tag-bg);'
+      +'border:1.5px solid var(--border);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;';
+    b.appendChild(imgEl(src));
+    return b;
+  }
+
+  function makeStepLbl(name) {
+    const l = document.createElement('div');
+    l.style.cssText = 'font-size:11px;color:var(--text-faint);margin-top:5px;font-weight:500;font-family:Georgia,serif;font-style:italic;text-align:center;';
+    l.textContent = name;
+    return l;
+  }
+
+  function makeOutBox(src) {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex-shrink:0;';
+    const box = document.createElement('div');
+    box.style.cssText = 'width:'+STEP+'px;height:'+STEP+'px;border-radius:10px;border:2px solid var(--border);'
+      +'background:var(--tag-bg);overflow:hidden;display:flex;align-items:center;justify-content:center;';
+    box.appendChild(imgEl(src));
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:11px;color:var(--text-faint);font-weight:600;margin-top:5px;font-family:Georgia,serif;font-style:italic;';
+    lbl.textContent = 'x\u2080';
+    wrap.appendChild(box); wrap.appendChild(lbl);
+    return wrap;
+  }
+
+  // Thin horizontal arrow matching the freq-demo style
+  function hArrow(color, w, vOffset) {
+    const d = document.createElement('div');
+    d.style.cssText = 'width:'+w+'px;flex-shrink:0;display:flex;align-items:center;align-self:flex-end;margin-bottom:'+(vOffset||0)+'px;';
+    d.innerHTML = '<svg width="'+w+'" height="16" viewBox="0 0 '+w+' 16">'
+      +'<line x1="1" y1="8" x2="'+(w-8)+'" y2="8" stroke="'+color+'" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>'
+      +'<path d="M'+(w-13)+' 3 L'+(w-1)+' 8 L'+(w-13)+' 13" fill="none" stroke="'+color+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>'
+      +'</svg>';
+    return d;
+  }
+
+  // Draw SVG fan arrows in the freq-demo style:
+  // open chevron arrowhead, rounded quadratic bezier, opacity .6
+  function drawSvgArrows(wrapper, condBox, stepEls, color, perStep) {
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      const wRect = wrapper.getBoundingClientRect();
+      const cRect = condBox.getBoundingClientRect();
+
+      const ox = cRect.right - wRect.left;
+      const oy = cRect.top + cRect.height / 2 - wRect.top;
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:8;';
+
+      // Open chevron arrowhead — same style as freq-demo markers
+      const mkId = 'mk'+Math.random().toString(36).slice(2,7);
+      const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+      const mk = document.createElementNS('http://www.w3.org/2000/svg','marker');
+      mk.setAttribute('id', mkId);
+      mk.setAttribute('viewBox','0 0 10 10');
+      mk.setAttribute('refX','8'); mk.setAttribute('refY','5');
+      mk.setAttribute('markerWidth','5'); mk.setAttribute('markerHeight','5');
+      mk.setAttribute('orient','auto-start-reverse');
+      const mkp = document.createElementNS('http://www.w3.org/2000/svg','path');
+      mkp.setAttribute('d','M2 1L8 5L2 9');  // open chevron, no fill
+      mkp.setAttribute('fill','none');
+      mkp.setAttribute('stroke', color);
+      mkp.setAttribute('stroke-width','1.8');
+      mkp.setAttribute('stroke-linecap','round');
+      mkp.setAttribute('stroke-linejoin','round');
+      mk.appendChild(mkp); defs.appendChild(mk); svg.appendChild(defs);
+
+      const targets = perStep ? stepEls : [stepEls[0]];
+
+      targets.forEach(function(item) {
+        const sbRect = item.sb.getBoundingClientRect();
+        const dx = sbRect.left + sbRect.width / 2 - wRect.left;
+        const dy = sbRect.top - wRect.top;
+
+        // Quadratic bezier control point — same approach as freq-demo radial arrows
+        // exits horizontally from right of cond, curves up to arrive at step top
+        const horizSpan = dx - ox;
+        const vertSpan  = dy - oy;
+        const cp1x = ox + horizSpan * 0.5;
+        const cp1y = oy;
+        const cp2x = dx;
+        const cp2y = dy - Math.abs(vertSpan) * 0.4 - 20;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+        path.setAttribute('d','M'+ox+' '+oy+' C'+cp1x+' '+cp1y+' '+cp2x+' '+cp2y+' '+dx+' '+dy);
+        path.setAttribute('fill','none');
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width','1.5');
+        path.setAttribute('stroke-linecap','round');
+        path.setAttribute('opacity','0.6');
+        path.setAttribute('marker-end','url(#'+mkId+')');
+        svg.appendChild(path);
+      });
+
+      wrapper.appendChild(svg);
+    }); });
+  }
+
+  const stepNames = ['x\u209C','x\u209C\u208B\u2081','\u2026','x\u2082','x\u2081'];
+  const stepMid = Math.round(STEP / 2 + 16);
+
+  function buildRow(opts) {
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'display:flex;align-items:flex-end;width:100%;position:relative;gap:0;';
+
+    // Left column: cond image (top-aligned) + text label (step-aligned)
+    const leftWrap = document.createElement('div');
+    leftWrap.style.cssText = 'display:flex;flex-direction:column;flex-shrink:0;padding-right:10px;align-items:center;';
+
+    const leftTopZone = document.createElement('div');
+    leftTopZone.style.cssText = 'height:'+TOP_H+'px;display:flex;align-items:center;justify-content:center;';
+    const condBox = makeCondBox(opts.condSrc, opts.color);
+    leftTopZone.appendChild(condBox);
+    leftWrap.appendChild(leftTopZone);
+
+    const leftStepZone = document.createElement('div');
+    leftStepZone.style.cssText = 'height:'+STEP+'px;display:flex;align-items:center;justify-content:center;';
+    leftStepZone.appendChild(makeTextLabel(opts.label1, opts.label2, opts.color));
+    leftWrap.appendChild(leftStepZone);
+    wrapper.appendChild(leftWrap);
+
+    wrapper.appendChild(hArrow(opts.color, 28, stepMid));
+
+    // Steps area
+    const stepsArea = document.createElement('div');
+    stepsArea.style.cssText = 'display:flex;align-items:flex-end;flex:1;position:relative;';
+    const stepEls = [];
+
+    for (let i = 0; i < N; i++) {
+      const col = document.createElement('div');
+      col.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex:1;';
+      const topZone = document.createElement('div');
+      topZone.style.cssText = 'height:'+TOP_H+'px;';
+      col.appendChild(topZone);
+      const sb = makeStepBox(EXAMPLE_IMG);
+      stepEls.push({ sb, col, topZone });
+      col.appendChild(sb);
+      col.appendChild(makeStepLbl(stepNames[i]));
+      stepsArea.appendChild(col);
+    }
+
+    // "Conditioning free" label for loose row: spans steps 1..N-1 (excluding step 0)
+    // We draw this as an SVG overlay on stepsArea after layout
+    if (!opts.perStep) {
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        const saRect = stepsArea.getBoundingClientRect();
+        const step0Rect = stepEls[0].col.getBoundingClientRect();
+        const lastRect  = stepEls[N-1].col.getBoundingClientRect();
+
+        // span from right edge of step0 col to right edge of last step col
+        const spanLeft  = step0Rect.right  - saRect.left;
+        const spanRight = lastRect.right   - saRect.left;
+        const spanW     = spanRight - spanLeft;
+
+        // top of the bracket: a fixed distance above the step boxes
+        const step0SbRect = stepEls[0].sb.getBoundingClientRect();
+        const bracketY    = step0SbRect.top - saRect.top - 14; // 14px above step box top
+        const bracketH    = 8;  // bracket arm height
+
+        const svgLabel = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        svgLabel.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:6;';
+
+        // Bracket: ┌────────────────┐  — bold teal
+        const bracket = document.createElementNS('http://www.w3.org/2000/svg','path');
+        const bx = spanLeft + 4;
+        const bw = spanW - 8;
+        bracket.setAttribute('d',
+          'M'+(bx)+' '+(bracketY+bracketH)
+          +' L'+bx+' '+bracketY
+          +' L'+(bx+bw)+' '+bracketY
+          +' L'+(bx+bw)+' '+(bracketY+bracketH)
+        );
+        bracket.setAttribute('fill','none');
+        bracket.setAttribute('stroke','#4a9ab5');
+        bracket.setAttribute('stroke-width','2');
+        bracket.setAttribute('stroke-linecap','round');
+        bracket.setAttribute('stroke-linejoin','round');
+        bracket.setAttribute('opacity','0.85');
+        svgLabel.appendChild(bracket);
+
+        // Pill background behind text
+        const textContent = 'conditioning free';
+        const pillW = 118, pillH = 18, pillR = 9;
+        const pillX = bx + bw/2 - pillW/2;
+        const pillY = bracketY - pillH - 4;
+        const pill = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        pill.setAttribute('x', String(pillX));
+        pill.setAttribute('y', String(pillY));
+        pill.setAttribute('width', String(pillW));
+        pill.setAttribute('height', String(pillH));
+        pill.setAttribute('rx', String(pillR));
+        pill.setAttribute('fill','#dff0f7');
+        pill.setAttribute('stroke','#4a9ab5');
+        pill.setAttribute('stroke-width','1.2');
+        pill.setAttribute('opacity','0.95');
+        svgLabel.appendChild(pill);
+
+        // Text label centered in pill
+        const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+        text.setAttribute('x', String(bx + bw/2));
+        text.setAttribute('y', String(pillY + pillH - 4));
+        text.setAttribute('text-anchor','middle');
+        text.setAttribute('font-size','11');
+        text.setAttribute('font-family','DM Sans, sans-serif');
+        text.setAttribute('fill','#2271a3');
+        text.setAttribute('font-weight','600');
+        text.setAttribute('letter-spacing','0.03em');
+        text.textContent = textContent;
+        svgLabel.appendChild(text);
+
+        stepsArea.appendChild(svgLabel);
+      }); });
+    }
+
+    wrapper.appendChild(stepsArea);
+    wrapper.appendChild(hArrow('#b0a99e', 28, stepMid));
+
+    const outWrap = document.createElement('div');
+    outWrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex-shrink:0;';
+    const outSpacer = document.createElement('div');
+    outSpacer.style.cssText = 'height:'+TOP_H+'px;';
+    outWrap.appendChild(outSpacer);
+    outWrap.appendChild(makeOutBox(opts.outSrc));
+    wrapper.appendChild(outWrap);
+
+    drawSvgArrows(wrapper, condBox, stepEls, opts.color, opts.perStep);
+
+    return wrapper;
+  }
+
+  container.appendChild(buildRow({
+    condSrc : "assets/low_vs_high/bear_sketch.png",  // replace with: 'assets/condition_loose.png'
+    color   : '#4a9ab5',
+    label1  : 'Noise Conditioning',
+    label2  : 'low-frequency prior',
+    perStep : false,
+    outSrc  : "assets/low_vs_high/bear_low.png",  // replace with: 'assets/output_loose.png'
+  }));
+
+  const div = document.createElement('div');
+  div.className = 'dn-divider';
+  container.appendChild(div);
+
+  container.appendChild(buildRow({
+    condSrc : "assets/low_vs_high/bear_edges.png",  // replace with: 'assets/condition_strict.png'
+    color   : '#c8502a',
+    label1  : 'Classic Conditioning',
+    label2  : 'edge / structure map',
+    perStep : true,
+    outSrc  : "assets/low_vs_high/grizzly.png",  // replace with: 'assets/output_strict.png'
+  }));
+}
+
+buildDenoisingDiagram();
+
+/* ─── FREQUENCY DEMO ─── */
+const FREQ_DATA = {
+  lfSrc: 'assets/low_vs_high/bear_sketch.png',
+  hfSrc: 'assets/low_vs_high/bear_edges.png',
+  lfLabel: 'Color prior', hfLabel: 'Edge map',
+  lfDesc: 'Color + structure condition', hfDesc: 'Edge + texture condition',
+  insight: '<strong style="font-weight:500">Low-frequency conditioning</strong> reliably steers the global color palette and composition \u2014 every output faithfully inherits the hue from the prior while the prompt freely shapes the subject. <strong style="font-weight:500">High-frequency conditioning</strong> only constrains fine edges and textures; the overall palette and composition drift unpredictably across prompts.',
+  lfOutputs: [
+    { src: 'assets/low_vs_high/sea_lion.png',   label: 'Sea-Lion',  prompt: '"A glass blown sculpture of a sea lion swimming under water"' },
+    { src: 'assets/low_vs_high/red_panda.png', label: 'Red Panda',    prompt: '"A Ukiyo-e illustration of a red panda on a tree in style of Utagawa Kuniyoshi"' },
+    { src: 'assets/low_vs_high/hippo_low.png',  label: 'Hippopotamus',   prompt: '"A watercolor painting of a hippopotamus in a lake in the style of Winslow Homer"' },
+    { src: 'assets/low_vs_high/moose_gogh.png', label: 'Moose', prompt: '"An oil painting of a bull moose in the style of van-Gogh"' },
+    { src: 'assets/low_vs_high/bear_low.png',   label: 'Grizzly Bear', prompt: '"a grizzly bear in the forest"' },
+  ],
+  hfOutputs: [
+    { src: 'assets/low_vs_high/grizzly.png', label: 'Grizzly Bear',     prompt: '"a grizzly bear in the forest"' },
+    { src: 'assets/low_vs_high/black.png',   label: 'Black Bear', prompt: '"a black bear in the forest"' },
+    { src: 'assets/low_vs_high/blue.png',    label: 'Blue Bear',    prompt: '"a blue bear in the forest"' },
+    { src: 'assets/low_vs_high/panda.png',   label: 'Giant Panda',   prompt: '"a giant panda in the forest"' },
+    { src: 'assets/low_vs_high/polar.png',   label: 'Polar Bear',  prompt: '"a polar bear in the forest"' },
+  ],
+};
+
+function freqLoadImg(imgEl, phEl, src) {
+  imgEl.style.display = 'none'; phEl.style.display = 'flex';
+  imgEl.onload  = () => { imgEl.style.display = 'block'; phEl.style.display = 'none'; };
+  imgEl.onerror = () => { imgEl.style.display = 'none';  phEl.style.display = 'flex'; };
+  imgEl.src = src;
+}
+
+function freqRender() {
+  const d = FREQ_DATA;
+  const stage = document.getElementById('freq-stage');
+  const stageW = stage.offsetWidth || 1100;
+  const stageH = 680;
+  const condW = 160;
+  const gap = 20;
+
+  freqLoadImg(document.getElementById('freq-cond-lf-img'), document.getElementById('freq-cond-lf-ph'), d.lfSrc);
+  freqLoadImg(document.getElementById('freq-cond-hf-img'), document.getElementById('freq-cond-hf-ph'), d.hfSrc);
+  document.getElementById('freq-cond-lf-footer').textContent = d.lfLabel;
+  document.getElementById('freq-cond-hf-footer').textContent = d.hfLabel;
+  document.getElementById('freq-cond-lf-desc').textContent = d.lfDesc;
+  document.getElementById('freq-cond-hf-desc').textContent = d.hfDesc;
+  document.getElementById('freq-insight').innerHTML = d.insight;
+
+  const lfCondEl = document.getElementById('freq-cond-lf');
+  const hfCondEl = document.getElementById('freq-cond-hf');
+  const lfCondLeft = stageW / 2 - condW - gap / 2;
+  const hfCondLeft = stageW / 2 + gap / 2;
+  lfCondEl.style.left = lfCondLeft + 'px';
+  lfCondEl.style.transform = 'translateY(-50%)';
+  hfCondEl.style.left = hfCondLeft + 'px';
+  hfCondEl.style.transform = 'translateY(-50%)';
+
+  const condY = stageH / 2;
+  const lfOriginX = lfCondLeft + condW / 2;
+  const hfOriginX = hfCondLeft + condW / 2;
+
+  stage.querySelectorAll('.freq-out-card').forEach(e => e.remove());
+  document.getElementById('freq-arrow-svg').querySelectorAll('path.freq-arrow-line').forEach(e => e.remove());
+
+  const outW = 148;
+  const N = 5;
+  const maxReach = Math.min(lfOriginX - outW / 2 - 12, stageH / 2 - outW / 2 - 12);
+  const radius = Math.max(maxReach, 200);
+  const hPush = 60;
+  const arcSpan = 160 * Math.PI / 180;
+  const lfCards = [], hfCards = [], lfArrows = [], hfArrows = [];
+
+  function placeArc(outputs, originX, baseAngle, cls, cards, delay0) {
+    outputs.forEach((item, i) => {
+      const t = N === 1 ? 0 : (i / (N - 1) - 0.5);
+      const angle = baseAngle + t * arcSpan;
+      const cx = originX + radius * Math.cos(angle) + Math.sign(Math.cos(angle)) * hPush;
+      const cy = condY   + radius * Math.sin(angle);
+      const card = freqMakeOutCard(item, cls, cx - outW/2, cy - outW/2, i * 60 + delay0);
+      cards.push({ card, cx, cy, angle });
+      stage.appendChild(card);
+    });
+  }
+
+  placeArc(d.lfOutputs, lfOriginX, Math.PI, 'lf-out', lfCards, 0);
+  placeArc(d.hfOutputs, hfOriginX, 0, 'hf-out', hfCards, 30);
+
+  setTimeout(() => {
+    lfCards.forEach(({ cx, cy, angle }) => {
+      lfArrows.push(freqRadialArrow(lfCondLeft - 2, condY, cx + outW/2 * Math.cos(angle - Math.PI), cy + outW/2 * Math.sin(angle - Math.PI), angle, '#4a9ab5', 'freq-mlf'));
+    });
+    hfCards.forEach(({ cx, cy, angle }) => {
+      hfArrows.push(freqRadialArrow(hfCondLeft + condW + 2, condY, cx - outW/2 * Math.cos(angle), cy - outW/2 * Math.sin(angle), angle, '#8b5bbf', 'freq-mhf'));
+    });
+    freqBindHover(lfCards.map(c => c.card), lfArrows, lfCondEl, hfCards.map(c => c.card), hfArrows, hfCondEl);
+    freqBindHover(hfCards.map(c => c.card), hfArrows, hfCondEl, lfCards.map(c => c.card), lfArrows, lfCondEl);
+  }, 30);
+}
+
+function freqRadialArrow(x1, y1, x2, y2, angle, color, markerId) {
+  const svg = document.getElementById('freq-arrow-svg');
+  const perpX = -Math.sin(angle) * 18, perpY = Math.cos(angle) * 18;
+  const mx = (x1 + x2) / 2 + perpX, my = (y1 + y2) / 2 + perpY;
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('class', 'freq-arrow-line');
+  path.setAttribute('d', `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`);
+  path.setAttribute('fill', 'none'); path.setAttribute('stroke', color);
+  path.setAttribute('stroke-width', '1.5'); path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('opacity', '.6'); path.style.transition = 'opacity .3s, filter .3s';
+  path.setAttribute('marker-end', `url(#${markerId})`);
+  svg.appendChild(path);
+  return path;
+}
+
+function freqBindHover(ownCards, ownArrows, ownCondEl, otherCards, otherArrows, otherCondEl) {
+  ownCards.forEach((card, idx) => {
+    card.addEventListener('mouseenter', () => {
+      ownCards.forEach((c, j) => { c.classList.toggle('freq-hovered', c === card); c.classList.toggle('freq-blurred', c !== card); });
+      otherCards.forEach(c => { c.classList.add('freq-blurred'); c.classList.remove('freq-hovered'); });
+      ownArrows.forEach((a, j) => { if (!a) return; a.style.opacity = j === idx ? '0.9' : '0.06'; a.style.filter = j === idx ? 'none' : 'blur(2px)'; });
+      otherArrows.forEach(a => { if (a) { a.style.opacity = '0.06'; a.style.filter = 'blur(2px)'; } });
+      ownCondEl.classList.add('freq-cond-active'); ownCondEl.classList.remove('freq-blur');
+      otherCondEl.classList.add('freq-blur'); otherCondEl.classList.remove('freq-cond-active');
+    });
+    card.addEventListener('mouseleave', () => {
+      ownCards.forEach(c => c.classList.remove('freq-hovered', 'freq-blurred'));
+      otherCards.forEach(c => c.classList.remove('freq-blurred'));
+      ownArrows.forEach(a => { if (a) { a.style.opacity = '0.6'; a.style.filter = ''; } });
+      otherArrows.forEach(a => { if (a) { a.style.opacity = '0.6'; a.style.filter = ''; } });
+      ownCondEl.classList.remove('freq-cond-active', 'freq-blur');
+      otherCondEl.classList.remove('freq-blur', 'freq-cond-active');
+    });
+  });
+}
+
+function freqMakeOutCard(item, cls, x, y, delay) {
+  const card = document.createElement('div');
+  card.className = 'freq-out-card ' + cls;
+  card.style.cssText = 'left:' + x + 'px;top:' + y + 'px;animation:freqFadeUp .45s ease ' + delay + 'ms both';
+  const overlay = document.createElement('div'); overlay.className = 'freq-prompt-overlay'; overlay.textContent = item.prompt;
+  const wrap = document.createElement('div'); wrap.className = 'freq-out-img-wrap';
+  const ph = document.createElement('div'); ph.className = 'freq-ph-icon';
+  ph.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>';
+  const img = document.createElement('img'); img.alt = item.label; img.style.display = 'none';
+  img.onload = () => { img.style.display = 'block'; ph.style.display = 'none'; };
+  img.onerror = () => { img.style.display = 'none'; ph.style.display = 'flex'; };
+  img.src = item.src;
+  wrap.appendChild(ph); wrap.appendChild(img);
+  const footer = document.createElement('div'); footer.className = 'freq-out-footer'; footer.textContent = item.label;
+  card.appendChild(overlay); card.appendChild(wrap); card.appendChild(footer);
+  return card;
+}
+
+freqRender();
+window.addEventListener('resize', () => { clearTimeout(window._freqRT); window._freqRT = setTimeout(freqRender, 80); });
+
+/* ─── TOGGLE GALLERY ─── */
+function buildToggleGrid(containerId, items) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return;
+  const cards = [];
+  items.forEach((item) => {
+    const inSuf  = (item.inputSuffix  !== undefined) ? item.inputSuffix  : '';
+    const outSuf = (item.outputSuffix !== undefined) ? item.outputSuffix : '_output';
+    const inputSrc  = item.inputSrc  || (item.dir + '/' + item.name + inSuf  + '.' + item.ext);
+    const resultSrc = item.resultSrc || (item.dir + '/' + item.name + outSuf + '.' + item.ext);
+    const label = item.label || item.name;
+    if (item.rowPrompt) {
+      const promptEl = document.createElement('div');
+      promptEl.className = 'toggle-row-prompt';
+      promptEl.innerHTML = item.rowPrompt;
+      grid.appendChild(promptEl);
+    }
+    const card = document.createElement('div');
+    card.className = 'toggle-card';
+    card.title = 'Click to toggle';
+    card.innerHTML = '<div class="toggle-card-img-wrap"><img class="img-input" alt="' + label + ' input" /><img class="img-result" alt="' + label + ' result" /></div><div class="toggle-card-label"></div>';
+    const imgIn = card.querySelector('.img-input'), imgOut = card.querySelector('.img-result');
+    imgIn.src = inputSrc; imgOut.src = resultSrc;
+    imgIn.onerror  = function() { showPlaceholder(this.closest('.toggle-card-img-wrap'), inputSrc); };
+    imgOut.onerror = function() { showPlaceholder(this.closest('.toggle-card-img-wrap'), resultSrc); };
+    card.querySelector('.toggle-card-label').innerHTML = label.replace(/\\n/g, '<br>');
+    cards.push(card);
+    grid.appendChild(card);
+  });
+  const GRID_TO_TOGGLE = {
+    'grid-color': 'toggle-color', 'grid-prompt': 'toggle-prompt',
+    'grid-seed': 'toggle-seed', 'grid-general': 'toggle-general',
+  };
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const isShowingResult = card.classList.contains('showing-result');
+      cards.forEach(c => c.classList.toggle('showing-result', !isShowingResult));
+      const anyShowing = cards.some(c => c.classList.contains('showing-result'));
+      const toggleId = GRID_TO_TOGGLE[containerId];
+      if (toggleId) syncSubsectionToggle(toggleId, anyShowing);
+      const appSection = document.getElementById('applications');
+      if (appSection && appSection.contains(card)) syncAppToggleIndicator(anyShowing);
+    });
+  });
+}
+
+function syncSubsectionToggle(toggleId, showing) {
+    const ind = document.getElementById(toggleId);
+    if (!ind) return;
+    const inputPill  = ind.querySelector('.gti-pill-input');
+    const resultPill = ind.querySelector('.gti-pill-result');
+    const dots = ind.querySelectorAll('.gti-dot');
+    if (showing) {
+      inputPill.style.background  = 'var(--tag-bg)';  inputPill.style.color  = 'var(--text-faint)';
+      resultPill.style.background = 'var(--accent)';  resultPill.style.color = '#fff';
+      dots.forEach(d => d.style.background = 'var(--accent)');
+    } else {
+      inputPill.style.background = ''; inputPill.style.color = '';
+      resultPill.style.background = ''; resultPill.style.color = '';
+      dots.forEach(d => d.style.background = '');
+    }
+  }
+
+  function syncAppToggleIndicator(showing) {
+  const inputPill = document.getElementById('app-gti-input'), resultPill = document.getElementById('app-gti-result');
+  const dots = [document.getElementById('app-gti-dot'), document.getElementById('app-gti-dot2')];
+  if (!inputPill) return;
+  if (showing) {
+    inputPill.style.background = 'var(--tag-bg)'; inputPill.style.color = 'var(--text-faint)';
+    resultPill.style.background = 'var(--accent)'; resultPill.style.color = '#fff';
+    dots.forEach(d => d && (d.style.background = 'var(--accent)'));
+  } else {
+    inputPill.style.background = ''; inputPill.style.color = '';
+    resultPill.style.background = ''; resultPill.style.color = '';
+    dots.forEach(d => d && (d.style.background = ''));
+  }
+}
+
+function showPlaceholder(wrap, src) {
+  if (!wrap || wrap.querySelector('.img-ph')) return;
+  const ph = document.createElement('div');
+  ph.className = 'img-ph';
+  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><code>' + src + '</code>';
+  wrap.appendChild(ph);
+}
+
+buildToggleGrid('grid-color', [
+  { dir: 'assets/color_var/cats',    name: 'orange_gray',  ext: 'png', label: 'an <span style="color:#e07b3a;font-weight:600;">orange</span> cat sitting\non a <span style="color:#888;font-weight:600;">gray</span> couch' },
+  { dir: 'assets/color_var/cats',    name: 'black_blue',   ext: 'png', label: 'a <span style="color:#1a1816;font-weight:600;">black</span> cat sitting\non a <span style="color:#4a9ab5;font-weight:600;">blue</span> couch' },
+  { dir: 'assets/color_var/cats',    name: 'white_red',    ext: 'png', label: 'a <span style="color:#bbb;font-weight:600;">white</span> cat sitting\non a <span style="color:#e05a5a;font-weight:600;">red</span> couch' },
+  { dir: 'assets/color_var/cats',    name: 'yellow_white', ext: 'png', label: 'a <span style="color:#1a1816;font-weight:600;">black and white</span> cat sitting\non a <span style="color:#d4b84a;font-weight:600;">yellow</span> couch' },
+  { dir: 'assets/color_var/cats',    name: 'green_purple', ext: 'png', label: 'a <span style="color:#5bab6e;font-weight:600;">green</span> cat sitting\non a <span style="color:#8b5bbf;font-weight:600;">purple</span> couch' },
+  { dir: 'assets/color_var/dragons', name: 'green',  ext: 'png', label: 'a <span style="color:#5bab6e;font-weight:600;">green</span> dragon flying\nin the sky breathing fire' },
+  { dir: 'assets/color_var/dragons', name: 'blue',   ext: 'png', label: 'a <span style="color:#4a9ab5;font-weight:600;">blue</span> dragon flying\nin the sky breathing fire' },
+  { dir: 'assets/color_var/dragons', name: 'white',  ext: 'png', label: 'a <span style="color:#bbb;font-weight:600;">white</span> dragon flying\nin the sky breathing fire' },
+  { dir: 'assets/color_var/dragons', name: 'cyan',   ext: 'png', label: 'a <span style="color:#4dd0e1;font-weight:600;">cyan</span> dragon flying\nin the sky breathing fire' },
+  { dir: 'assets/color_var/dragons', name: 'purple', ext: 'png', label: 'a <span style="color:#8b5bbf;font-weight:600;">purple</span> dragon flying\nin the sky breathing fire' },
+]);
+
+buildToggleGrid('grid-prompt', [
+  { dir: 'assets/prompt_var', name: 'prompt_a', ext: 'png', label: 'A cat on a snowy mountain' },
+  { dir: 'assets/prompt_var', name: 'prompt_b', ext: 'png', label: 'A dog in the style of van-Gogh' },
+  { dir: 'assets/prompt_var', name: 'prompt_c', ext: 'png', label: 'A wolf in a lake' },
+  { dir: 'assets/prompt_var', name: 'prompt_d', ext: 'png', label: 'A moose lego figure' },
+  { dir: 'assets/prompt_var', name: 'prompt_e', ext: 'png', label: 'A tiger walking on the beach' },
+  { dir: 'assets/prompt_var', name: 'prompt_f', ext: 'png', label: 'A watercolor painting of a woman wearing a dress' },
+  { dir: 'assets/prompt_var', name: 'prompt_g', ext: 'png', label: 'A photo of a frog' },
+  { dir: 'assets/prompt_var', name: 'prompt_h', ext: 'png', label: 'A painting of a car in the style of Monet' },
+  { dir: 'assets/prompt_var', name: 'prompt_i', ext: 'png', label: 'A photo of a flower' },
+  { dir: 'assets/prompt_var', name: 'prompt_j', ext: 'png', label: 'An abstract oil painting in the style of Emil Nolde' },
+]);
+
+buildToggleGrid('grid-seed', [
+  { dir: 'assets/seed_var', name: 'seed_01', ext: 'png', label: '', rowPrompt: '\u2756 "A Photo of a dog chasing a yellow ball"' },
+  { dir: 'assets/seed_var', name: 'seed_02', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_03', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_04', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_05', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_06', ext: 'png', label: '', rowPrompt: '\u2756 "An abstract painting depicting a portrait of a woman" \u2014 5 seeds' },
+  { dir: 'assets/seed_var', name: 'seed_07', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_08', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_09', ext: 'png', label: '' },
+  { dir: 'assets/seed_var', name: 'seed_10', ext: 'png', label: '' },
+]);
+
+buildToggleGrid('grid-general', [
+  { dir: 'assets/results', name: 'result_01', ext: 'png', label: 'An orange, purple and black cats in the garden' },
+  { dir: 'assets/results', name: 'result_02', ext: 'png', label: 'A pink kangaroo in Australia' },
+  { dir: 'assets/results', name: 'result_03', ext: 'png', label: 'Iron-Man and the Green-Hulk on the way to a fight' },
+  { dir: 'assets/results', name: 'result_04', ext: 'png', label: 'A drumset on stage' },
+  { dir: 'assets/results', name: 'result_05', ext: 'png', label: 'A photo of a beautiful red sail-boat' },
+  { dir: 'assets/results', name: 'result_06', ext: 'png', label: 'A top view of a white whale swimming near the beach' },
+  { dir: 'assets/results', name: 'result_07', ext: 'png', label: 'A photo of a gorilla in the zoo' },
+  { dir: 'assets/results', name: 'result_08', ext: 'png', label: 'A chick on grass' },
+  { dir: 'assets/results', name: 'result_09', ext: 'png', label: 'A walrus sitting on an iceberg in antarctica' },
+  { dir: 'assets/results', name: 'result_10', ext: 'png', label: 'A photo of a white marble sculpture outdoors' },
+  { dir: 'assets/results', name: 'result_11', ext: 'png', label: 'A photo of a pink robot lying on a wooden table' },
+  { dir: 'assets/results', name: 'result_12', ext: 'png', label: 'A beautiful lake surrounded by pink flowers' },
+  { dir: 'assets/results', name: 'result_13', ext: 'png', label: 'A Kong-fu fighter in a middle of an intense match with a white spirit...' },
+  { dir: 'assets/results', name: 'result_14', ext: 'png', label: 'A chameleon on a tree branch in the jungle' },
+  { dir: 'assets/results', name: 'result_15', ext: 'png', label: 'A beautiful temple in the jungle next to a waterfall' },
+  { dir: 'assets/results', name: 'result_16', ext: 'png', label: 'A leopard leaping upward during the night' },
+  { dir: 'assets/results', name: 'result_17', ext: 'png', label: 'A man getting punched in the face by a boxing glove' },
+  { dir: 'assets/results', name: 'result_18', ext: 'png', label: 'A photo of a flower' },
+  { dir: 'assets/results', name: 'result_19', ext: 'png', label: 'An elephant and a giraffe in the savanna' },
+  { dir: 'assets/results', name: 'result_20', ext: 'png', label: 'A photo of a snowman in the park' },
+]);
+
+buildToggleGrid('grid-app-style-1', [
+  { dir: 'assets/app_style', name: 'style1_a', ext: 'png', label: 'Impressionist sunset landscape' },
+  { dir: 'assets/app_style', name: 'style1_b', ext: 'png', label: 'Impressionist portrait' },
+  { dir: 'assets/app_style', name: 'style1_c', ext: 'png', label: 'Impressionist still life' },
+  { dir: 'assets/app_style', name: 'style1_d', ext: 'png', label: 'Impressionist street scene' },
+]);
+buildToggleGrid('grid-app-style-2', [
+  { dir: 'assets/app_style', name: 'style2_a', ext: 'png', label: 'Art Nouveau floral composition' },
+  { dir: 'assets/app_style', name: 'style2_b', ext: 'png', label: 'Art Nouveau figure study' },
+  { dir: 'assets/app_style', name: 'style2_c', ext: 'png', label: 'Art Nouveau ornamental border' },
+  { dir: 'assets/app_style', name: 'style2_d', ext: 'png', label: 'Art Nouveau poster design' },
+]);
+buildToggleGrid('grid-app-style-3', [
+  { dir: 'assets/app_style', name: 'style3_a', ext: 'png', label: 'Ukiyo-e mountain scene' },
+  { dir: 'assets/app_style', name: 'style3_b', ext: 'png', label: 'Ukiyo-e ocean waves' },
+  { dir: 'assets/app_style', name: 'style3_c', ext: 'png', label: 'Ukiyo-e cherry blossoms' },
+  { dir: 'assets/app_style', name: 'style3_d', ext: 'png', label: 'Ukiyo-e wildlife portrait' },
+]);
+buildToggleGrid('grid-app-style-4', [
+  { dir: 'assets/app_style', name: 'style4_a', ext: 'png', label: 'Expressionist urban scene' },
+  { dir: 'assets/app_style', name: 'style4_b', ext: 'png', label: 'Expressionist figure' },
+  { dir: 'assets/app_style', name: 'style4_c', ext: 'png', label: 'Expressionist abstract' },
+  { dir: 'assets/app_style', name: 'style4_d', ext: 'png', label: 'Expressionist landscape' },
+]);
+
+/* ─── COLOR-PRESERVING STYLIZATION ─── */
+const csContentImages = [
+  { src: 'assets/stylization/content/content_1.jpg', label: 'Landscape' },
+  { src: 'assets/stylization/content/content_2.jpg', label: 'Portrait' },
+];
+const csStyleImages = [
+  { src: 'assets/stylization/style/style_1.png', label: 'Monet' },
+  { src: 'assets/stylization/style/style_2.png', label: 'Van Gogh' },
+  { src: 'assets/stylization/style/style_3.png', label: 'Picasso' },
+  { src: 'assets/stylization/style/style_4.png', label: 'Klimt' },
+  { src: 'assets/stylization/style/style_5.png', label: 'Kandinsky' },
+];
+let csSelectedContent = null, csSelectedStyle = null;
+
+function buildCsContentOptions() {
+  const container = document.getElementById('cs-content-opts');
+  csContentImages.forEach((imgData, i) => {
+    const opt = document.createElement('div');
+    opt.className = 'sty-content-opt'; opt.title = imgData.label;
+    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
+      '<div class="cs-content-opt-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' + imgData.label + '</div>' +
+      '<div class="cs-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>';
+    opt.addEventListener('click', () => {
+      container.querySelectorAll('.sty-content-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected'); csSelectedContent = i; updateCsResult();
+    });
+    container.appendChild(opt);
+  });
+}
+
+function buildCsStyleOptions() {
+  const container = document.getElementById('cs-style-opts');
+  csStyleImages.forEach((imgData, i) => {
+    const opt = document.createElement('div');
+    opt.className = 'sty-style-opt'; opt.title = imgData.label;
+    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
+      '<div class="cs-style-opt-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' + imgData.label + '</div>' +
+      '<div class="cs-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>';
+    opt.addEventListener('click', () => {
+      container.querySelectorAll('.sty-style-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected'); csSelectedStyle = i; updateCsResult();
+    });
+    container.appendChild(opt);
+  });
+}
+
+function updateCsResult() {
+  const img = document.getElementById('cs-result-img'), empty = document.getElementById('cs-result-empty');
+  if (csSelectedContent === null || csSelectedStyle === null) { img.style.display = 'none'; empty.style.display = 'flex'; return; }
+  const c = csSelectedContent + 1, s = csSelectedStyle + 1;
+  const suffix = cnMode === 'on' ? '' : '_nocn';
+  const src = 'assets/stylization/results/result_c' + c + '_s' + s + suffix + '.png';
+  img.onload = () => { empty.style.display = 'none'; img.style.display = 'block'; };
+  img.onerror = () => {
+    img.style.display = 'none'; empty.style.display = 'flex';
+    empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span style="font-size:11px;">Place result at<br/><code style="font-size:10px;background:var(--tag-bg);padding:2px 6px;border-radius:4px;">' + src + '</code></span>';
+  };
+  img.src = src;
+}
+
+buildCsContentOptions();
+buildCsStyleOptions();
+
+const INTERP_STEPS = 5, INTERP_TOTAL = INTERP_STEPS + 2;
+const interpContentImages = [
+  { src: 'assets/stylization/content/content_1.png', label: 'Landscape' },
+  { src: 'assets/stylization/content/content_2.png', label: 'Portrait' },
+  { src: 'assets/stylization/content/content_3.png', label: 'Still life' },
+  { src: 'assets/stylization/content/content_4.png', label: 'Architecture' },
+  { src: 'assets/stylization/content/content_5.png', label: 'Animal' },
+  { src: 'assets/stylization/content/content_6.png', label: 'Street' },
+];
+let interpSelectedContent = 0, interpCurrentStep = 0, interpDragging = false, cnMode = 'on';
+const stepLabels = ['Style A', ...Array.from({length: INTERP_STEPS}, (_,i) => '\u03b1=' + (((i+1)/(INTERP_STEPS+1)).toFixed(2))), 'Style B'];
+
+function setCnMode(mode) {
+  cnMode = mode;
+  const optOn = document.getElementById('cn-opt-on'), optOff = document.getElementById('cn-opt-off');
+  const bg = document.getElementById('cn-toggle-bg');
+  const activeEl = mode === 'on' ? optOn : optOff;
+  optOn.classList.toggle('active', mode === 'on'); optOff.classList.toggle('active', mode === 'off');
+  const toggleEl = document.getElementById('cn-toggle');
+  if (toggleEl && bg) { const toggleRect = toggleEl.getBoundingClientRect(); const activeRect = activeEl.getBoundingClientRect(); bg.style.left = (activeRect.left - toggleRect.left) + 'px'; bg.style.width = activeRect.width + 'px'; }
+  updateCsResult();
+}
+
+function initCnTogglePill() {
+  const bg = document.getElementById('cn-toggle-bg'), optOn = document.getElementById('cn-opt-on');
+  const tog = document.getElementById('cn-toggle'); if (!bg || !optOn || !tog) return;
+  requestAnimationFrame(() => {
+    const tr = tog.getBoundingClientRect(), ar = optOn.getBoundingClientRect();
+    bg.style.left = (ar.left - tr.left) + 'px'; bg.style.width = ar.width + 'px';
+  });
+}
+
+function buildInterpViewer(contentIdx) {
+  const c = contentIdx + 1, suffix = cnMode === 'on' ? '' : '_nocn';
+  const srcA = 'assets/stylization/interp/content_' + c + '_styleA.png';
+  const srcB = 'assets/stylization/interp/content_' + c + '_styleB.png';
+  document.getElementById('interp-anchor-a').innerHTML = '<img src="' + srcA + '" alt="Style A" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-anchor-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>Style A</div>';
+  document.getElementById('interp-anchor-b').innerHTML = '<img src="' + srcB + '" alt="Style B" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-anchor-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>Style B</div>';
+  const viewer = document.getElementById('interp-viewer');
+  if (!viewer) return;
+  viewer.querySelectorAll('img').forEach(el => el.remove());
+  const ph = document.getElementById('interp-viewer-ph');
+  if (ph) ph.style.display = 'none';
+  const srcs = [srcA, ...Array.from({length: INTERP_STEPS}, (_,s) => 'assets/stylization/interp/content_' + c + '_step' + (s+1) + suffix + '.png'), srcB];
+  srcs.forEach((src, idx) => {
+    const img = document.createElement('img');
+    img.src = src; img.alt = stepLabels[idx];
+    if (idx === interpCurrentStep) img.classList.add('active');
+    img.onerror = function() { this.style.display = 'none'; };
+    viewer.appendChild(img);
+  });
+  updateInterpViewer();
+}
+
+function updateInterpViewer() {
+  document.getElementById('interp-viewer').querySelectorAll('img').forEach((img, idx) => img.classList.toggle('active', idx === interpCurrentStep));
+  const pct = (interpCurrentStep / (INTERP_TOTAL - 1)) * 100;
+  document.getElementById('interp-slider-fill').style.width = pct + '%';
+  document.getElementById('interp-slider-thumb').style.left = pct + '%';
+  document.getElementById('interp-step-indicator').textContent = stepLabels[interpCurrentStep];
+}
+
+function buildSliderStepLabels() {
+  const el = document.getElementById('interp-slider-steps'); el.innerHTML = '';
+  stepLabels.forEach(lbl => { const s = document.createElement('div'); s.className = 'interp-slider-step-label'; s.textContent = lbl.length > 6 ? lbl.slice(0,6) + '\u2026' : lbl; el.appendChild(s); });
+}
+
+function initSlider() {
+  const track = document.getElementById('interp-slider-track');
+  function posToStep(clientX) { const r = track.getBoundingClientRect(); return Math.round(Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * (INTERP_TOTAL - 1)); }
+  function onMove(e) { if (!interpDragging) return; interpCurrentStep = posToStep(e.touches ? e.touches[0].clientX : e.clientX); updateInterpViewer(); }
+  document.getElementById('interp-slider-thumb').addEventListener('mousedown', e => { interpDragging = true; e.preventDefault(); });
+  document.getElementById('interp-slider-thumb').addEventListener('touchstart', () => { interpDragging = true; }, { passive: true });
+  track.addEventListener('mousedown', e => { interpDragging = true; interpCurrentStep = posToStep(e.clientX); updateInterpViewer(); });
+  track.addEventListener('touchstart', e => { interpDragging = true; interpCurrentStep = posToStep(e.touches[0].clientX); updateInterpViewer(); }, { passive: true });
+  window.addEventListener('mousemove', onMove); window.addEventListener('touchmove', onMove, { passive: true });
+  window.addEventListener('mouseup', () => { interpDragging = false; }); window.addEventListener('touchend', () => { interpDragging = false; });
+}
+
+function buildInterpContentSelector() {
+  const opts = document.getElementById('interp-content-opts');
+  interpContentImages.forEach((imgData, i) => {
+    const opt = document.createElement('div');
+    opt.className = 'sty-interp-content-opt' + (i === 0 ? ' selected' : ''); opt.title = imgData.label;
+    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-content-opt-ph" style="display:none;">' + imgData.label + '</div>';
+    opt.addEventListener('click', () => {
+      opts.querySelectorAll('.sty-interp-content-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected'); interpSelectedContent = i; buildInterpViewer(i);
+    });
+    opts.appendChild(opt);
+  });
+}
+
+buildSliderStepLabels(); buildInterpViewer(0); buildInterpContentSelector(); initSlider(); initCnTogglePill();
+
+/* ─── BibTeX copy ─── */
+function copyBibtex() {
+  const text = document.getElementById('bibtex-box').innerText.replace('Copy\n', '');
+  navigator.clipboard.writeText(text).then(() => { const btn = document.querySelector('.copy-btn'); btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); });
+}
+</script>
+</body>
+</html>
