@@ -224,48 +224,6 @@
     .app-subsection:first-child { margin-top: 0; }
     .app-subsection-title { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 24px); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 8px; color: var(--text); }
     .app-subsection-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-    /* ── Stylization Studio ── */
-    .sty-studio { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow: hidden; }
-    .sty-main-row { display: grid; grid-template-columns: 120px 1fr 120px; gap: 0; padding: 28px 20px 20px; align-items: start; }
-    .sty-content-strip, .sty-style-strip { display: flex; flex-direction: column; gap: 8px; align-items: center; }
-    .sty-strip-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-faint); margin-bottom: 4px; }
-    #cs-content-opts, #cs-style-opts { display: flex; flex-direction: column; gap: 7px; align-items: center; }
-    .sty-content-opt, .sty-style-opt { width: 108px; aspect-ratio: 1; border-radius: 10px; overflow: hidden; border: 2.5px solid transparent; cursor: pointer; transition: border-color .18s, transform .15s, box-shadow .18s; position: relative; flex-shrink: 0; }
-    .sty-content-opt img, .sty-style-opt img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .sty-content-opt:hover, .sty-style-opt:hover { transform: scale(1.04); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
-    .sty-content-opt.selected, .sty-style-opt.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-    .sty-content-opt .cs-check, .sty-style-opt .cs-check { position: absolute; top: 5px; right: 5px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); display: none; align-items: center; justify-content: center; }
-    .sty-content-opt.selected .cs-check, .sty-style-opt.selected .cs-check { display: flex; }
-    .cs-check svg { width: 9px; height: 9px; stroke: white; stroke-width: 2.5; fill: none; }
-    .sty-result-col { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 12px; }
-    .sty-result-frame { width: 100%; max-width: 280px; aspect-ratio: 1; border-radius: var(--radius-lg); overflow: hidden; background: var(--tag-bg); border: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
-    .sty-result-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-faint); font-size: 13px; text-align: center; padding: 20px; position: absolute; inset: 0; }
-    .sty-compare-row { display: flex; align-items: center; }
-    .sty-cn-toggle { display: inline-flex; align-items: center; background: var(--tag-bg); border: 1px solid var(--border); border-radius: 100px; padding: 3px; gap: 2px; box-shadow: var(--shadow); user-select: none; position: relative; }
-    .sty-cn-bg { position: absolute; top: 3px; bottom: 3px; border-radius: 100px; background: var(--text); transition: left .25s cubic-bezier(.4,0,.2,1), width .25s cubic-bezier(.4,0,.2,1); z-index: 0; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
-    .sty-cn-opt { position: relative; z-index: 1; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-faint); display: flex; align-items: center; gap: 5px; transition: color .2s; white-space: nowrap; }
-    .sty-cn-opt.active { color: #fff; }
-    .sty-interp-row { border-top: 1px solid var(--border-soft); background: var(--bg); padding: 20px 24px 24px; }
-    .sty-interp-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
-    .sty-interp-title { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .08em; }
-    .sty-interp-hint { font-size: 12px; color: var(--text-faint); font-style: italic; }
-    .sty-interp-body { display: grid; grid-template-columns: 80px 1fr 80px; gap: 14px; align-items: start; }
-    .sty-interp-anchor-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .sty-interp-anchor { width: 76px; height: 76px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); background: var(--tag-bg); }
-    .sty-interp-anchor img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .sty-interp-anchor-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
-    .sty-interp-center { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .sty-interp-viewer { width: 100%; aspect-ratio: 16/7; border-radius: var(--radius-lg); overflow: hidden; background: var(--tag-bg); border: 1px solid var(--border); position: relative; box-shadow: var(--shadow); }
-    .sty-interp-viewer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s; pointer-events: none; }
-    .sty-interp-viewer img.active { opacity: 1; }
-    .sty-slider-wrap { width: 100%; display: flex; flex-direction: column; gap: 6px; }
-    .sty-slider-labels { display: flex; justify-content: space-between; align-items: center; padding: 0 2px; }
-    .sty-interp-content-row { display: flex; align-items: center; gap: 12px; width: 100%; }
-    .sty-interp-content-opts { display: flex; gap: 8px; flex-wrap: wrap; }
-    .sty-interp-content-opt { width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 2.5px solid transparent; cursor: pointer; transition: border-color .18s, transform .15s; flex-shrink: 0; }
-    .sty-interp-content-opt img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .sty-interp-content-opt:hover { transform: scale(1.08); }
-    .sty-interp-content-opt.selected { border-color: var(--accent); }
     .bibtex-box { background: #1a1816; color: #c8c3ba; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.7; padding: 24px 28px; border-radius: var(--radius-lg); position: relative; overflow: auto; margin-top: 20px; }
     .bibtex-box .kw { color: #c8502a; }
     .bibtex-box .field { color: #8ab4f8; }
@@ -280,10 +238,6 @@
     .fade-up-d4 { animation-delay: 0.4s; }
     @media (max-width: 900px) {
       .toggle-grid-cols-4, .toggle-grid-cols-5 { grid-template-columns: repeat(3, 1fr); }
-      .cs-grid { grid-template-columns: 1fr; }
-      .cs-content-col { grid-row: auto; } .cs-style-col { grid-row: auto; } .cs-result-col { grid-row: auto; }
-      .cs-style-options { grid-template-columns: repeat(5, 1fr); }
-      .interp-anchor { width: 120px; }
       nav { display: none; }
       .container { padding: 0 20px; }
       .freq-stage { height: 740px; }
@@ -354,11 +308,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
           Paper (Arxiv)
         </a>
+        <!-- NEW: Paper (PDF) button -->
+        <a class="btn btn-primary" href="assets/paper.pdf" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><polyline points="9,9 10,9"/></svg>
+          Paper (PDF)
+        </a>
         <a class="btn" href="https://github.com/Nadavc220/colorful_noise">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
           Code
         </a>
-        <a class="btn" href="https://youtu.be/6HpK2lZfnU0">
+        <!-- NEW: Colorful Sketches Dataset button -->
+        <a class="btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Colorful Sketches Dataset
+        </a>
+        <a class="btn" href="https://youtu.be/6HpK2lZfnU0"">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
           Video
         </a>
@@ -374,23 +338,31 @@
     </div>
 
     <p class="hero-abstract fade-up fade-up-d3" style="margin-top: 36px;">
+      <p class="section-tag">Abstract</p>
       Text-to-image diffusion models generate images by gradually converting white Gaussian noise into a natural image. White Gaussian noise is well suited for producing diverse outputs from a single text prompt due to its absence of structure. However, this very property limits control over, and predictability of, specific visual attributes, as the noise is not human-interpretable. In this work, we investigate the characteristics of the input noise in diffusion models. We show that, although all frequencies in white Gaussian noise have comparable statistical energy, low-frequency components primarily determine the image&#8217;s global structure and color composition, while high-frequency components control finer details. Building on this observation, we demonstrate that simple manipulations of the low-frequency noise using low-frequency image priors can effectively condition the generation process to reconstruct these low-frequency visual cues. This allows us to define a simple, training-free method with minimal overhead that steers overall image structure and color, while letting high-frequency components freely emerge as fine details, enabling variability across generated outputs.
     </p>
   </div>
 </div>
 
 <!-- Motivation -->
-<div id="motivation" class="motivation-section">
+<!-- <div id="motivation" class="motivation-section">
   <div class="container">
-    <p class="section-tag">Motivation</p>
+    <p class="section-tag">Motivation</p> -->
+
+    <!--
+    ═══════════════════════════════════════════════════════════════════
+    COMMENTED OUT: "Loose Conditioning vs. Strict Conditioning" section
+    ═══════════════════════════════════════════════════════════════════
+
     <h2>Loose Conditioning vs. Strict Conditioning</h2>
     <p class="body-text">
       Visual conditioning methods differ fundamentally in how tightly they constrain the generation process. <em>Strict</em> conditions (edges, depth, pose) lock in fine structural details but require specialized models and limit creative diversity. <em>Loose</em> conditions &mdash; such as rough color sketches &mdash; preserve high-level intent while leaving room for the model to freely generate fine details, enabling richer variability from a single input.
     </p>
 
     <!-- EDIT 3: Denoising process diagram (built by buildDenoisingDiagram()) -->
+    <!--
     <div class="denoising-diagram">
-      <div class="dn-inner" id="dn-inner"><!-- JS fills this --></div>
+      <div class="dn-inner" id="dn-inner"></div>
       <div class="dn-legend">
         <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#4a9ab5;"></div><span>Loose &mdash; prior injected once at x<sub>T</sub></span></div>
         <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#c8502a;"></div><span>Strict &mdash; signal injected at every step</span></div>
@@ -401,18 +373,26 @@
     <div class="motivation-highlight" style="margin-top: 32px;">
       Key insight: Low-frequency conditions preserve high-level structure and color intent while leaving enough freedom for diverse, creative, and user-driven generation &mdash; with zero additional training.
     </div>
+
+    END COMMENTED SECTION
+    ═══════════════════════════════════════════════════════════════════
+    -->
+<!-- 
   </div>
-</div>
+</div> -->
 
 <!-- Frequency Demo -->
 <div class="freq-demo-section" id="freq-demo">
   <div class="container">
-    <p class="section-tag">Frequency Analysis</p>
+    <p class="section-tag">Motivation</p>
     <h2>Low-Frequency vs. High-Frequency Conditioning</h2>
     <p class="body-text" style="margin-bottom: 28px;">
-      Low-frequency components in the input noise determine global color and structure, while high-frequency components govern fine details.
-      Conditioning on <strong style="font-weight:500;color:#2271a3;">low frequencies</strong> steers the overall scene composition and palette &mdash; outputs stay coherent across different prompts.
-      Conditioning on <strong style="font-weight:500;color:#6139a8;">high frequencies</strong> only affects fine texture &mdash; global structure varies freely. Hover over any output to see its prompt.
+      Many artistic processes, such as painting and sculpting, begin with coarse structure and gradually refine fine details. Diffusion models follow a similar process: early denoising steps recover low-frequency information (global structure), while later steps introduce high-frequency details.
+
+      In this work, we leverage this property to condition image generation using an initial sketch. By constraining only the low frequencies, we preserve the overall structure while allowing the model to freely generate details. As shown below, this enables image generation from colorful sketches that naturally resemble the early stages of drawing.
+
+      In contrast, traditional conditioning methods such as ControlNet often rely on detailed conditions, resulting in rigid generations with limited diversity, where variations are mostly restricted to low-frequency properties like color. Moreover, because these methods constrain the entire diffusion process, they can reduce output quality. Conditioning only the initial noise preserves generation flexibility and maintains image quality.
+
     </p>
     <div class="freq-row-labels">
       <span class="freq-side-label lf">Low-frequency outputs</span>
@@ -469,14 +449,7 @@
       <div class="overview-caption">Fig. 3: Overview of Colorful-Noise. Given an input color prior, we extract its low-frequency component via frequency decomposition and inject it into the initial noise tensor. The modified noise is fed directly into a standard text-to-image diffusion model &mdash; no changes to the model or sampling procedure required.</div>
     </div>
 
-    <!-- <div class="video-wrapper" style="margin-top:24px;">
-      <div class="video-placeholder">
-        <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></div>
-        <span>Video placeholder &mdash; replace with &lt;video&gt; or YouTube embed</span>
-      </div>
-      <div class="video-caption">Fig. 4: Video walkthrough of the method.</div> -->
     </div>
-  </div>
 </section>
 
 <!-- Results -->
@@ -538,120 +511,6 @@
   </div>
 </section>
 
-<!-- Applications -->
-<!-- <section id="applications">
-  <div class="container">
-    <p class="section-tag">Additional Applications</p>
-    <h2>Beyond Generation</h2>
-    <p class="body-text">Our low-frequency noise manipulation framework extends naturally to downstream tasks. Below we demonstrate two applications enabled by the same core mechanism: image-based style alignment and color-preserving stylization.</p>
-    <div class="app-subsection" id="app-style-alignment">
-      <h3 class="app-subsection-title">Image-Based Style Alignment</h3>
-      <p class="app-subsection-desc">Given a reference image, our method extracts its low-frequency color and tonal signature and injects it into the generation process. The output inherits the overall feel and palette of the reference while remaining true to the text prompt and input structure.</p>
-      <div class="global-toggle-indicator" id="app-toggle-indicator" style="margin-top: 12px;">
-        <span class="gti-pill gti-pill-input" id="app-gti-input">Input</span>
-        <span class="gti-dot" id="app-gti-dot"></span>
-        <span class="gti-label">click any image to toggle</span>
-        <span class="gti-dot" id="app-gti-dot2"></span>
-        <span class="gti-pill gti-pill-result" id="app-gti-result">Result</span>
-      </div>
-      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-1"></div></div>
-      <div style="height:24px;"></div>
-      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-2"></div></div>
-      <div style="height:24px;"></div>
-      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-3"></div></div>
-      <div style="height:24px;"></div>
-      <div class="gallery-section-block"><div class="toggle-grid toggle-grid-cols-4" id="grid-app-style-4"></div></div>
-    </div>
-    <div class="gallery-divider"></div>
-    <div class="app-subsection" id="app-stylization">
-      <h3 class="app-subsection-title">Color-Preserving Stylization</h3>
-      <p class="app-subsection-desc">Transfer the artistic style of a reference painting onto a content image while faithfully preserving the original color palette. Choose a content image and a style image to see the result, or explore seamless interpolation between two styles.</p>
-      <div class="sty-studio"> -->
-
-        <!-- Row 1: content strip | result viewer | style strip -->
-        <!-- <div class="sty-main-row">
-
-          <div class="sty-content-strip">
-            <div class="sty-strip-label">Content</div>
-            <div id="cs-content-opts"></div>
-          </div>
-
-          <div class="sty-result-col">
-            <div class="sty-result-frame" id="cs-result-img-wrap">
-              <div class="sty-result-ph" id="cs-result-empty">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-                <span>Pick content &amp; style</span>
-              </div>
-              <img id="cs-result-img" style="display:none;width:100%;height:100%;object-fit:cover;" alt="Stylized result" />
-            </div>
-            <div class="sty-compare-row">
-              <div class="sty-cn-toggle" id="cn-toggle">
-                <div class="sty-cn-bg" id="cn-toggle-bg"></div>
-                <div class="sty-cn-opt active" id="cn-opt-on" onclick="setCnMode('on')">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-                  With Colorful-Noise
-                </div>
-                <div class="sty-cn-opt" id="cn-opt-off" onclick="setCnMode('off')">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="2" y1="2" x2="22" y2="22"/><path d="M12 7a5 5 0 0 1 4.9 6M6.7 6.7A5 5 0 0 0 12 17a5 5 0 0 0 3.3-1.3"/></svg>
-                  Without
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="sty-style-strip">
-            <div class="sty-strip-label">Style</div>
-            <div id="cs-style-opts"></div>
-          </div>
-
-        </div> -->
-
-        <!-- Row 2: interpolation -->
-        <!-- <div class="sty-interp-row">
-          <div class="sty-interp-header">
-            <span class="sty-interp-title">Style Interpolation</span>
-            <span class="sty-interp-hint">drag the slider to blend between two styles</span>
-          </div>
-          <div class="sty-interp-body">
-            <div class="sty-interp-anchor-col">
-              <div class="sty-interp-anchor" id="interp-anchor-a"></div>
-              <div class="sty-interp-anchor-lbl" style="color:var(--c5);">Style A</div>
-            </div>
-            <div class="sty-interp-center">
-              <div class="sty-interp-viewer" id="interp-viewer">
-                <div class="interp-viewer-ph" id="interp-viewer-ph">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>
-                  <span>Drag the slider</span>
-                </div>
-              </div>
-              <div class="sty-slider-wrap">
-                <div class="interp-slider-track" id="interp-slider-track">
-                  <div class="interp-slider-bg"></div>
-                  <div class="interp-slider-fill" id="interp-slider-fill" style="width:0%"></div>
-                  <div class="interp-slider-thumb" id="interp-slider-thumb" style="left:0%"></div>
-                </div>
-                <div class="sty-slider-labels">
-                  <span style="color:var(--c5);font-weight:600;font-size:11px;">Style A</span>
-                  <span id="interp-step-indicator" style="font-size:11px;color:var(--text-faint);"></span>
-                  <span style="color:var(--c7);font-weight:600;font-size:11px;">Style B</span>
-                </div>
-              </div>
-              <div class="sty-interp-content-row">
-                <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);">Content</span>
-                <div id="interp-content-opts" class="sty-interp-content-opts"></div>
-              </div>
-            </div>
-            <div class="sty-interp-anchor-col">
-              <div class="sty-interp-anchor" id="interp-anchor-b"></div>
-              <div class="sty-interp-anchor-lbl" style="color:var(--c7);">Style B</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section> -->
 <!-- BibTeX -->
 <section id="bibtex">
   <div class="container">
@@ -659,13 +518,6 @@
     <h2>BibTeX</h2>
     <div class="bibtex-box" id="bibtex-box">
       <button class="copy-btn" onclick="copyBibtex()">Copy</button>
-<!-- <pre><span class="kw">@inproceedings</span>{cohen2026colorfullnoise,
-  <span class="field">title</span>     = {Colorful-Noise: Training-Free Low-Frequency Noise Manipulation for Color-Based Conditional Image Generation},
-  <span class="field">author</span>    = {Cohen, Nadav Z. and Abramovich, Ofir and Shamir, Ariel},
-  <span class="field">booktitle</span> = {ACM SIGGRAPH 2026 Conference Proceedings},
-  <span class="field">year</span>      = {2026},
-  <span class="field">url</span>       = {https://arxiv.org/abs/XXXX.XXXXX}
-}</pre> -->
 <pre><span class="kw">@misc</span>{cohen2026colorfulnoise,
   <span class="field">title</span>          = {Colorful-Noise: Training-Free Low-Frequency Noise Manipulation for Color-Based Conditional Image Generation},
   <span class="field">author</span>         = {Nadav Z. Cohen and Ofir Abramovich and Ariel Shamir},
@@ -689,315 +541,6 @@
 </footer>
 
 <script>
-/* ─── EDIT 3: Build denoising process diagram ─── */
-function buildDenoisingDiagram() {
-  const container = document.getElementById('dn-inner');
-  const N = 5;
-  const STEP = 150;    // denoising step box size (bigger)
-  const COND = 110;    // conditioning image size (bigger)
-  const TOP_H = COND + 8;
-
-  const EXAMPLE_IMG = 'assets/low_vs_high/bear_low.png';
-
-  const PH = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>';
-
-  function imgEl(src) {
-    const el = document.createElement('img');
-    el.src = src;
-    el.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;';
-    el.onerror = function(){ this.style.display='none'; };
-    return el;
-  }
-
-  function makeCondBox(src, color) {
-    const box = document.createElement('div');
-    box.style.cssText = 'width:'+COND+'px;height:'+COND+'px;border-radius:10px;border:2.5px solid '+color
-      +';background:var(--tag-bg);overflow:hidden;display:flex;align-items:center;justify-content:center;'
-      +'flex-shrink:0;cursor:default;position:relative;z-index:1;'
-      +'transition:transform 0.22s cubic-bezier(0.2,0,0.2,1),box-shadow 0.22s;';
-    box.appendChild(imgEl(src));
-    box.addEventListener('mouseenter', function(){
-      this.style.transform='scale(1.5)'; this.style.boxShadow='0 8px 28px rgba(0,0,0,0.25)'; this.style.zIndex='40';
-    });
-    box.addEventListener('mouseleave', function(){
-      this.style.transform=''; this.style.boxShadow=''; this.style.zIndex='1';
-    });
-    return box;
-  }
-
-  function makeTextLabel(line1, line2, color) {
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'padding:7px 11px;border-radius:9px;border:2px solid '+color
-      +';background:var(--surface);display:flex;flex-direction:column;align-items:center;';
-    const l1 = document.createElement('div');
-    l1.style.cssText = 'font-size:11px;font-weight:700;color:'+color+';text-align:center;line-height:1.3;white-space:nowrap;';
-    l1.textContent = line1;
-    const l2 = document.createElement('div');
-    l2.style.cssText = 'font-size:10px;font-weight:500;color:'+color+';text-align:center;line-height:1.3;opacity:0.7;white-space:nowrap;';
-    l2.textContent = line2;
-    wrap.appendChild(l1); wrap.appendChild(l2);
-    return wrap;
-  }
-
-  function makeStepBox(src) {
-    const b = document.createElement('div');
-    b.style.cssText = 'width:'+STEP+'px;height:'+STEP+'px;border-radius:10px;background:var(--tag-bg);'
-      +'border:1.5px solid var(--border);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;';
-    b.appendChild(imgEl(src));
-    return b;
-  }
-
-  function makeStepLbl(name) {
-    const l = document.createElement('div');
-    l.style.cssText = 'font-size:11px;color:var(--text-faint);margin-top:5px;font-weight:500;font-family:Georgia,serif;font-style:italic;text-align:center;';
-    l.textContent = name;
-    return l;
-  }
-
-  function makeOutBox(src) {
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex-shrink:0;';
-    const box = document.createElement('div');
-    box.style.cssText = 'width:'+STEP+'px;height:'+STEP+'px;border-radius:10px;border:2px solid var(--border);'
-      +'background:var(--tag-bg);overflow:hidden;display:flex;align-items:center;justify-content:center;';
-    box.appendChild(imgEl(src));
-    const lbl = document.createElement('div');
-    lbl.style.cssText = 'font-size:11px;color:var(--text-faint);font-weight:600;margin-top:5px;font-family:Georgia,serif;font-style:italic;';
-    lbl.textContent = 'x\u2080';
-    wrap.appendChild(box); wrap.appendChild(lbl);
-    return wrap;
-  }
-
-  // Thin horizontal arrow matching the freq-demo style
-  function hArrow(color, w, vOffset) {
-    const d = document.createElement('div');
-    d.style.cssText = 'width:'+w+'px;flex-shrink:0;display:flex;align-items:center;align-self:flex-end;margin-bottom:'+(vOffset||0)+'px;';
-    d.innerHTML = '<svg width="'+w+'" height="16" viewBox="0 0 '+w+' 16">'
-      +'<line x1="1" y1="8" x2="'+(w-8)+'" y2="8" stroke="'+color+'" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>'
-      +'<path d="M'+(w-13)+' 3 L'+(w-1)+' 8 L'+(w-13)+' 13" fill="none" stroke="'+color+'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>'
-      +'</svg>';
-    return d;
-  }
-
-  // Draw SVG fan arrows in the freq-demo style:
-  // open chevron arrowhead, rounded quadratic bezier, opacity .6
-  function drawSvgArrows(wrapper, condBox, stepEls, color, perStep) {
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){
-      const wRect = wrapper.getBoundingClientRect();
-      const cRect = condBox.getBoundingClientRect();
-
-      const ox = cRect.right - wRect.left;
-      const oy = cRect.top + cRect.height / 2 - wRect.top;
-
-      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-      svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:8;';
-
-      // Open chevron arrowhead — same style as freq-demo markers
-      const mkId = 'mk'+Math.random().toString(36).slice(2,7);
-      const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
-      const mk = document.createElementNS('http://www.w3.org/2000/svg','marker');
-      mk.setAttribute('id', mkId);
-      mk.setAttribute('viewBox','0 0 10 10');
-      mk.setAttribute('refX','8'); mk.setAttribute('refY','5');
-      mk.setAttribute('markerWidth','5'); mk.setAttribute('markerHeight','5');
-      mk.setAttribute('orient','auto-start-reverse');
-      const mkp = document.createElementNS('http://www.w3.org/2000/svg','path');
-      mkp.setAttribute('d','M2 1L8 5L2 9');  // open chevron, no fill
-      mkp.setAttribute('fill','none');
-      mkp.setAttribute('stroke', color);
-      mkp.setAttribute('stroke-width','1.8');
-      mkp.setAttribute('stroke-linecap','round');
-      mkp.setAttribute('stroke-linejoin','round');
-      mk.appendChild(mkp); defs.appendChild(mk); svg.appendChild(defs);
-
-      const targets = perStep ? stepEls : [stepEls[0]];
-
-      targets.forEach(function(item) {
-        const sbRect = item.sb.getBoundingClientRect();
-        const dx = sbRect.left + sbRect.width / 2 - wRect.left;
-        const dy = sbRect.top - wRect.top;
-
-        // Quadratic bezier control point — same approach as freq-demo radial arrows
-        // exits horizontally from right of cond, curves up to arrive at step top
-        const horizSpan = dx - ox;
-        const vertSpan  = dy - oy;
-        const cp1x = ox + horizSpan * 0.5;
-        const cp1y = oy;
-        const cp2x = dx;
-        const cp2y = dy - Math.abs(vertSpan) * 0.4 - 20;
-
-        const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-        path.setAttribute('d','M'+ox+' '+oy+' C'+cp1x+' '+cp1y+' '+cp2x+' '+cp2y+' '+dx+' '+dy);
-        path.setAttribute('fill','none');
-        path.setAttribute('stroke', color);
-        path.setAttribute('stroke-width','1.5');
-        path.setAttribute('stroke-linecap','round');
-        path.setAttribute('opacity','0.6');
-        path.setAttribute('marker-end','url(#'+mkId+')');
-        svg.appendChild(path);
-      });
-
-      wrapper.appendChild(svg);
-    }); });
-  }
-
-  const stepNames = ['x\u209C','x\u209C\u208B\u2081','\u2026','x\u2082','x\u2081'];
-  const stepMid = Math.round(STEP / 2 + 16);
-
-  function buildRow(opts) {
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = 'display:flex;align-items:flex-end;width:100%;position:relative;gap:0;';
-
-    // Left column: cond image (top-aligned) + text label (step-aligned)
-    const leftWrap = document.createElement('div');
-    leftWrap.style.cssText = 'display:flex;flex-direction:column;flex-shrink:0;padding-right:10px;align-items:center;';
-
-    const leftTopZone = document.createElement('div');
-    leftTopZone.style.cssText = 'height:'+TOP_H+'px;display:flex;align-items:center;justify-content:center;';
-    const condBox = makeCondBox(opts.condSrc, opts.color);
-    leftTopZone.appendChild(condBox);
-    leftWrap.appendChild(leftTopZone);
-
-    const leftStepZone = document.createElement('div');
-    leftStepZone.style.cssText = 'height:'+STEP+'px;display:flex;align-items:center;justify-content:center;';
-    leftStepZone.appendChild(makeTextLabel(opts.label1, opts.label2, opts.color));
-    leftWrap.appendChild(leftStepZone);
-    wrapper.appendChild(leftWrap);
-
-    wrapper.appendChild(hArrow(opts.color, 28, stepMid));
-
-    // Steps area
-    const stepsArea = document.createElement('div');
-    stepsArea.style.cssText = 'display:flex;align-items:flex-end;flex:1;position:relative;';
-    const stepEls = [];
-
-    for (let i = 0; i < N; i++) {
-      const col = document.createElement('div');
-      col.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex:1;';
-      const topZone = document.createElement('div');
-      topZone.style.cssText = 'height:'+TOP_H+'px;';
-      col.appendChild(topZone);
-      const sb = makeStepBox(EXAMPLE_IMG);
-      stepEls.push({ sb, col, topZone });
-      col.appendChild(sb);
-      col.appendChild(makeStepLbl(stepNames[i]));
-      stepsArea.appendChild(col);
-    }
-
-    // "Conditioning free" label for loose row: spans steps 1..N-1 (excluding step 0)
-    // We draw this as an SVG overlay on stepsArea after layout
-    if (!opts.perStep) {
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){
-        const saRect = stepsArea.getBoundingClientRect();
-        const step0Rect = stepEls[0].col.getBoundingClientRect();
-        const lastRect  = stepEls[N-1].col.getBoundingClientRect();
-
-        // span from right edge of step0 col to right edge of last step col
-        const spanLeft  = step0Rect.right  - saRect.left;
-        const spanRight = lastRect.right   - saRect.left;
-        const spanW     = spanRight - spanLeft;
-
-        // top of the bracket: a fixed distance above the step boxes
-        const step0SbRect = stepEls[0].sb.getBoundingClientRect();
-        const bracketY    = step0SbRect.top - saRect.top - 14; // 14px above step box top
-        const bracketH    = 8;  // bracket arm height
-
-        const svgLabel = document.createElementNS('http://www.w3.org/2000/svg','svg');
-        svgLabel.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:6;';
-
-        // Bracket: ┌────────────────┐  — bold teal
-        const bracket = document.createElementNS('http://www.w3.org/2000/svg','path');
-        const bx = spanLeft + 4;
-        const bw = spanW - 8;
-        bracket.setAttribute('d',
-          'M'+(bx)+' '+(bracketY+bracketH)
-          +' L'+bx+' '+bracketY
-          +' L'+(bx+bw)+' '+bracketY
-          +' L'+(bx+bw)+' '+(bracketY+bracketH)
-        );
-        bracket.setAttribute('fill','none');
-        bracket.setAttribute('stroke','#4a9ab5');
-        bracket.setAttribute('stroke-width','2');
-        bracket.setAttribute('stroke-linecap','round');
-        bracket.setAttribute('stroke-linejoin','round');
-        bracket.setAttribute('opacity','0.85');
-        svgLabel.appendChild(bracket);
-
-        // Pill background behind text
-        const textContent = 'conditioning free';
-        const pillW = 118, pillH = 18, pillR = 9;
-        const pillX = bx + bw/2 - pillW/2;
-        const pillY = bracketY - pillH - 4;
-        const pill = document.createElementNS('http://www.w3.org/2000/svg','rect');
-        pill.setAttribute('x', String(pillX));
-        pill.setAttribute('y', String(pillY));
-        pill.setAttribute('width', String(pillW));
-        pill.setAttribute('height', String(pillH));
-        pill.setAttribute('rx', String(pillR));
-        pill.setAttribute('fill','#dff0f7');
-        pill.setAttribute('stroke','#4a9ab5');
-        pill.setAttribute('stroke-width','1.2');
-        pill.setAttribute('opacity','0.95');
-        svgLabel.appendChild(pill);
-
-        // Text label centered in pill
-        const text = document.createElementNS('http://www.w3.org/2000/svg','text');
-        text.setAttribute('x', String(bx + bw/2));
-        text.setAttribute('y', String(pillY + pillH - 4));
-        text.setAttribute('text-anchor','middle');
-        text.setAttribute('font-size','11');
-        text.setAttribute('font-family','DM Sans, sans-serif');
-        text.setAttribute('fill','#2271a3');
-        text.setAttribute('font-weight','600');
-        text.setAttribute('letter-spacing','0.03em');
-        text.textContent = textContent;
-        svgLabel.appendChild(text);
-
-        stepsArea.appendChild(svgLabel);
-      }); });
-    }
-
-    wrapper.appendChild(stepsArea);
-    wrapper.appendChild(hArrow('#b0a99e', 28, stepMid));
-
-    const outWrap = document.createElement('div');
-    outWrap.style.cssText = 'display:flex;flex-direction:column;align-items:center;flex-shrink:0;';
-    const outSpacer = document.createElement('div');
-    outSpacer.style.cssText = 'height:'+TOP_H+'px;';
-    outWrap.appendChild(outSpacer);
-    outWrap.appendChild(makeOutBox(opts.outSrc));
-    wrapper.appendChild(outWrap);
-
-    drawSvgArrows(wrapper, condBox, stepEls, opts.color, opts.perStep);
-
-    return wrapper;
-  }
-
-  container.appendChild(buildRow({
-    condSrc : "assets/low_vs_high/bear_sketch.png",  // replace with: 'assets/condition_loose.png'
-    color   : '#4a9ab5',
-    label1  : 'Noise Conditioning',
-    label2  : 'low-frequency prior',
-    perStep : false,
-    outSrc  : "assets/low_vs_high/bear_low.png",  // replace with: 'assets/output_loose.png'
-  }));
-
-  const div = document.createElement('div');
-  div.className = 'dn-divider';
-  container.appendChild(div);
-
-  container.appendChild(buildRow({
-    condSrc : "assets/low_vs_high/bear_edges.png",  // replace with: 'assets/condition_strict.png'
-    color   : '#c8502a',
-    label1  : 'Classic Conditioning',
-    label2  : 'edge / structure map',
-    perStep : true,
-    outSrc  : "assets/low_vs_high/grizzly.png",  // replace with: 'assets/output_strict.png'
-  }));
-}
-
-buildDenoisingDiagram();
-
 /* ─── FREQUENCY DEMO ─── */
 const FREQ_DATA = {
   lfSrc: 'assets/low_vs_high/bear_sketch.png',
@@ -1192,8 +735,6 @@ function buildToggleGrid(containerId, items) {
       const anyShowing = cards.some(c => c.classList.contains('showing-result'));
       const toggleId = GRID_TO_TOGGLE[containerId];
       if (toggleId) syncSubsectionToggle(toggleId, anyShowing);
-      const appSection = document.getElementById('applications');
-      if (appSection && appSection.contains(card)) syncAppToggleIndicator(anyShowing);
     });
   });
 }
@@ -1214,21 +755,6 @@ function syncSubsectionToggle(toggleId, showing) {
       dots.forEach(d => d.style.background = '');
     }
   }
-
-  function syncAppToggleIndicator(showing) {
-  const inputPill = document.getElementById('app-gti-input'), resultPill = document.getElementById('app-gti-result');
-  const dots = [document.getElementById('app-gti-dot'), document.getElementById('app-gti-dot2')];
-  if (!inputPill) return;
-  if (showing) {
-    inputPill.style.background = 'var(--tag-bg)'; inputPill.style.color = 'var(--text-faint)';
-    resultPill.style.background = 'var(--accent)'; resultPill.style.color = '#fff';
-    dots.forEach(d => d && (d.style.background = 'var(--accent)'));
-  } else {
-    inputPill.style.background = ''; inputPill.style.color = '';
-    resultPill.style.background = ''; resultPill.style.color = '';
-    dots.forEach(d => d && (d.style.background = ''));
-  }
-}
 
 function showPlaceholder(wrap, src) {
   if (!wrap || wrap.querySelector('.img-ph')) return;
@@ -1299,189 +825,6 @@ buildToggleGrid('grid-general', [
   { dir: 'assets/results', name: 'result_19', ext: 'png', label: 'An elephant and a giraffe in the savanna' },
   { dir: 'assets/results', name: 'result_20', ext: 'png', label: 'A photo of a snowman in the park' },
 ]);
-
-buildToggleGrid('grid-app-style-1', [
-  { dir: 'assets/app_style', name: 'style1_a', ext: 'png', label: 'Impressionist sunset landscape' },
-  { dir: 'assets/app_style', name: 'style1_b', ext: 'png', label: 'Impressionist portrait' },
-  { dir: 'assets/app_style', name: 'style1_c', ext: 'png', label: 'Impressionist still life' },
-  { dir: 'assets/app_style', name: 'style1_d', ext: 'png', label: 'Impressionist street scene' },
-]);
-buildToggleGrid('grid-app-style-2', [
-  { dir: 'assets/app_style', name: 'style2_a', ext: 'png', label: 'Art Nouveau floral composition' },
-  { dir: 'assets/app_style', name: 'style2_b', ext: 'png', label: 'Art Nouveau figure study' },
-  { dir: 'assets/app_style', name: 'style2_c', ext: 'png', label: 'Art Nouveau ornamental border' },
-  { dir: 'assets/app_style', name: 'style2_d', ext: 'png', label: 'Art Nouveau poster design' },
-]);
-buildToggleGrid('grid-app-style-3', [
-  { dir: 'assets/app_style', name: 'style3_a', ext: 'png', label: 'Ukiyo-e mountain scene' },
-  { dir: 'assets/app_style', name: 'style3_b', ext: 'png', label: 'Ukiyo-e ocean waves' },
-  { dir: 'assets/app_style', name: 'style3_c', ext: 'png', label: 'Ukiyo-e cherry blossoms' },
-  { dir: 'assets/app_style', name: 'style3_d', ext: 'png', label: 'Ukiyo-e wildlife portrait' },
-]);
-buildToggleGrid('grid-app-style-4', [
-  { dir: 'assets/app_style', name: 'style4_a', ext: 'png', label: 'Expressionist urban scene' },
-  { dir: 'assets/app_style', name: 'style4_b', ext: 'png', label: 'Expressionist figure' },
-  { dir: 'assets/app_style', name: 'style4_c', ext: 'png', label: 'Expressionist abstract' },
-  { dir: 'assets/app_style', name: 'style4_d', ext: 'png', label: 'Expressionist landscape' },
-]);
-
-/* ─── COLOR-PRESERVING STYLIZATION ─── */
-const csContentImages = [
-  { src: 'assets/stylization/content/content_1.jpg', label: 'Landscape' },
-  { src: 'assets/stylization/content/content_2.jpg', label: 'Portrait' },
-];
-const csStyleImages = [
-  { src: 'assets/stylization/style/style_1.png', label: 'Monet' },
-  { src: 'assets/stylization/style/style_2.png', label: 'Van Gogh' },
-  { src: 'assets/stylization/style/style_3.png', label: 'Picasso' },
-  { src: 'assets/stylization/style/style_4.png', label: 'Klimt' },
-  { src: 'assets/stylization/style/style_5.png', label: 'Kandinsky' },
-];
-let csSelectedContent = null, csSelectedStyle = null;
-
-function buildCsContentOptions() {
-  const container = document.getElementById('cs-content-opts');
-  csContentImages.forEach((imgData, i) => {
-    const opt = document.createElement('div');
-    opt.className = 'sty-content-opt'; opt.title = imgData.label;
-    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
-      '<div class="cs-content-opt-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' + imgData.label + '</div>' +
-      '<div class="cs-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>';
-    opt.addEventListener('click', () => {
-      container.querySelectorAll('.sty-content-opt').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected'); csSelectedContent = i; updateCsResult();
-    });
-    container.appendChild(opt);
-  });
-}
-
-function buildCsStyleOptions() {
-  const container = document.getElementById('cs-style-opts');
-  csStyleImages.forEach((imgData, i) => {
-    const opt = document.createElement('div');
-    opt.className = 'sty-style-opt'; opt.title = imgData.label;
-    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" />' +
-      '<div class="cs-style-opt-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' + imgData.label + '</div>' +
-      '<div class="cs-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>';
-    opt.addEventListener('click', () => {
-      container.querySelectorAll('.sty-style-opt').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected'); csSelectedStyle = i; updateCsResult();
-    });
-    container.appendChild(opt);
-  });
-}
-
-function updateCsResult() {
-  const img = document.getElementById('cs-result-img'), empty = document.getElementById('cs-result-empty');
-  if (csSelectedContent === null || csSelectedStyle === null) { img.style.display = 'none'; empty.style.display = 'flex'; return; }
-  const c = csSelectedContent + 1, s = csSelectedStyle + 1;
-  const suffix = cnMode === 'on' ? '' : '_nocn';
-  const src = 'assets/stylization/results/result_c' + c + '_s' + s + suffix + '.png';
-  img.onload = () => { empty.style.display = 'none'; img.style.display = 'block'; };
-  img.onerror = () => {
-    img.style.display = 'none'; empty.style.display = 'flex';
-    empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span style="font-size:11px;">Place result at<br/><code style="font-size:10px;background:var(--tag-bg);padding:2px 6px;border-radius:4px;">' + src + '</code></span>';
-  };
-  img.src = src;
-}
-
-buildCsContentOptions();
-buildCsStyleOptions();
-
-const INTERP_STEPS = 5, INTERP_TOTAL = INTERP_STEPS + 2;
-const interpContentImages = [
-  { src: 'assets/stylization/content/content_1.png', label: 'Landscape' },
-  { src: 'assets/stylization/content/content_2.png', label: 'Portrait' },
-  { src: 'assets/stylization/content/content_3.png', label: 'Still life' },
-  { src: 'assets/stylization/content/content_4.png', label: 'Architecture' },
-  { src: 'assets/stylization/content/content_5.png', label: 'Animal' },
-  { src: 'assets/stylization/content/content_6.png', label: 'Street' },
-];
-let interpSelectedContent = 0, interpCurrentStep = 0, interpDragging = false, cnMode = 'on';
-const stepLabels = ['Style A', ...Array.from({length: INTERP_STEPS}, (_,i) => '\u03b1=' + (((i+1)/(INTERP_STEPS+1)).toFixed(2))), 'Style B'];
-
-function setCnMode(mode) {
-  cnMode = mode;
-  const optOn = document.getElementById('cn-opt-on'), optOff = document.getElementById('cn-opt-off');
-  const bg = document.getElementById('cn-toggle-bg');
-  const activeEl = mode === 'on' ? optOn : optOff;
-  optOn.classList.toggle('active', mode === 'on'); optOff.classList.toggle('active', mode === 'off');
-  const toggleEl = document.getElementById('cn-toggle');
-  if (toggleEl && bg) { const toggleRect = toggleEl.getBoundingClientRect(); const activeRect = activeEl.getBoundingClientRect(); bg.style.left = (activeRect.left - toggleRect.left) + 'px'; bg.style.width = activeRect.width + 'px'; }
-  updateCsResult();
-}
-
-function initCnTogglePill() {
-  const bg = document.getElementById('cn-toggle-bg'), optOn = document.getElementById('cn-opt-on');
-  const tog = document.getElementById('cn-toggle'); if (!bg || !optOn || !tog) return;
-  requestAnimationFrame(() => {
-    const tr = tog.getBoundingClientRect(), ar = optOn.getBoundingClientRect();
-    bg.style.left = (ar.left - tr.left) + 'px'; bg.style.width = ar.width + 'px';
-  });
-}
-
-function buildInterpViewer(contentIdx) {
-  const c = contentIdx + 1, suffix = cnMode === 'on' ? '' : '_nocn';
-  const srcA = 'assets/stylization/interp/content_' + c + '_styleA.png';
-  const srcB = 'assets/stylization/interp/content_' + c + '_styleB.png';
-  document.getElementById('interp-anchor-a').innerHTML = '<img src="' + srcA + '" alt="Style A" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-anchor-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>Style A</div>';
-  document.getElementById('interp-anchor-b').innerHTML = '<img src="' + srcB + '" alt="Style B" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-anchor-ph" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>Style B</div>';
-  const viewer = document.getElementById('interp-viewer');
-  if (!viewer) return;
-  viewer.querySelectorAll('img').forEach(el => el.remove());
-  const ph = document.getElementById('interp-viewer-ph');
-  if (ph) ph.style.display = 'none';
-  const srcs = [srcA, ...Array.from({length: INTERP_STEPS}, (_,s) => 'assets/stylization/interp/content_' + c + '_step' + (s+1) + suffix + '.png'), srcB];
-  srcs.forEach((src, idx) => {
-    const img = document.createElement('img');
-    img.src = src; img.alt = stepLabels[idx];
-    if (idx === interpCurrentStep) img.classList.add('active');
-    img.onerror = function() { this.style.display = 'none'; };
-    viewer.appendChild(img);
-  });
-  updateInterpViewer();
-}
-
-function updateInterpViewer() {
-  document.getElementById('interp-viewer').querySelectorAll('img').forEach((img, idx) => img.classList.toggle('active', idx === interpCurrentStep));
-  const pct = (interpCurrentStep / (INTERP_TOTAL - 1)) * 100;
-  document.getElementById('interp-slider-fill').style.width = pct + '%';
-  document.getElementById('interp-slider-thumb').style.left = pct + '%';
-  document.getElementById('interp-step-indicator').textContent = stepLabels[interpCurrentStep];
-}
-
-function buildSliderStepLabels() {
-  const el = document.getElementById('interp-slider-steps'); el.innerHTML = '';
-  stepLabels.forEach(lbl => { const s = document.createElement('div'); s.className = 'interp-slider-step-label'; s.textContent = lbl.length > 6 ? lbl.slice(0,6) + '\u2026' : lbl; el.appendChild(s); });
-}
-
-function initSlider() {
-  const track = document.getElementById('interp-slider-track');
-  function posToStep(clientX) { const r = track.getBoundingClientRect(); return Math.round(Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * (INTERP_TOTAL - 1)); }
-  function onMove(e) { if (!interpDragging) return; interpCurrentStep = posToStep(e.touches ? e.touches[0].clientX : e.clientX); updateInterpViewer(); }
-  document.getElementById('interp-slider-thumb').addEventListener('mousedown', e => { interpDragging = true; e.preventDefault(); });
-  document.getElementById('interp-slider-thumb').addEventListener('touchstart', () => { interpDragging = true; }, { passive: true });
-  track.addEventListener('mousedown', e => { interpDragging = true; interpCurrentStep = posToStep(e.clientX); updateInterpViewer(); });
-  track.addEventListener('touchstart', e => { interpDragging = true; interpCurrentStep = posToStep(e.touches[0].clientX); updateInterpViewer(); }, { passive: true });
-  window.addEventListener('mousemove', onMove); window.addEventListener('touchmove', onMove, { passive: true });
-  window.addEventListener('mouseup', () => { interpDragging = false; }); window.addEventListener('touchend', () => { interpDragging = false; });
-}
-
-function buildInterpContentSelector() {
-  const opts = document.getElementById('interp-content-opts');
-  interpContentImages.forEach((imgData, i) => {
-    const opt = document.createElement('div');
-    opt.className = 'sty-interp-content-opt' + (i === 0 ? ' selected' : ''); opt.title = imgData.label;
-    opt.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.label + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';" /><div class="interp-content-opt-ph" style="display:none;">' + imgData.label + '</div>';
-    opt.addEventListener('click', () => {
-      opts.querySelectorAll('.sty-interp-content-opt').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected'); interpSelectedContent = i; buildInterpViewer(i);
-    });
-    opts.appendChild(opt);
-  });
-}
-
-buildSliderStepLabels(); buildInterpViewer(0); buildInterpContentSelector(); initSlider(); initCnTogglePill();
 
 /* ─── BibTeX copy ─── */
 function copyBibtex() {
