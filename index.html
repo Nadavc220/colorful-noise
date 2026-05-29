@@ -292,7 +292,7 @@
       <!-- Affiliation row: logo + lab name + institution -->
       <div class="affil-row">
         <div class="affil-logo">
-          <img src="assets/lab_logo_v1.png" alt="Canvas Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <img src="assets/lab_logo.png" alt="Canvas Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
           <div class="affil-logo-placeholder">Lab logo</div>
         </div>
         <div class="affil-divider"></div>
@@ -507,6 +507,70 @@
         <span class="gti-pill gti-pill-result">Result</span>
       </div>
       <div class="toggle-grid toggle-grid-cols-5" id="grid-general"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Applications -->
+<section id="applications">
+  <div class="container">
+    <p class="section-tag">Applications</p>
+    <h2>Applications</h2>
+    <p class="body-text">Beyond direct color conditioning, Colorful-Noise enables a range of downstream creative and editing tasks. Because our method operates purely on the initial noise &mdash; with no model modifications &mdash; it composes naturally with any text-to-image pipeline.</p>
+
+    <div class="app-subsection">
+      <h3 class="app-subsection-title">Color-Based Style Alignment</h3>
+      <p class="app-subsection-desc">
+        Given a reference style image, we extract its low-frequency color palette and inject it into the initial noise. This guides the generated output to match the global color distribution and tonal character of the reference &mdash; without copying its content or structure. The result is a stylistically aligned image that remains fully controlled by the text prompt, enabling coherent multi-image sets that share a consistent visual language.
+      </p>
+      <div class="overview-panel">
+        <div class="overview-img-wrap">
+          <img src="assets/apps/alignment_revision.png" alt="Color-based style alignment results" />
+        </div>
+        <div class="overview-caption">Fig. 4: Color-based style alignment. Left: reference style image used as a color prior. Right: generated outputs conditioned on its low-frequency palette across varied text prompts, demonstrating consistent color-mood alignment without structural imitation. Bottom reference © Augustin Arroyo (@flowalistic on Instagram). All rights reserved.</div>
+      </div>
+    </div>
+
+    <div class="gallery-divider"></div>
+
+    <div class="app-subsection">
+      <h3 class="app-subsection-title">Color-Preserving Stylization</h3>
+        <p class="app-subsection-desc">
+          Colorful-Noise can be effectively combined with other conditioning methods, such as Canny edge maps (via ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup>) and stylization techniques (e.g., Conditional Balanced<sup><a href="#fn-condbal" style="color:var(--accent);text-decoration:none;font-weight:500;">2</a></sup> Style-Aligned<sup><a href="#fn-stylealigned" style="color:var(--accent);text-decoration:none;font-weight:500;">3</a></sup>). As demonstrated, given a content image whose colors should be preserved, Colorful-Noise retains its low-frequency information, while ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup> constrains the high-frequency structural details. When stylization is applied, the resulting image preserves the original content colors while transferring the texture and geometric characteristics of the reference style. Furthermore, the strength of this effect can be controlled through linear interpolation between Colorful-Noise and white noise, enabling a gradual transition between content preservation and generative flexibility.
+        </p>
+      <div class="overview-panel">
+        <div class="overview-img-wrap">
+          <img src="assets/apps/stylyzation_revision.png" alt="Color-preserving stylization example 1" />
+        </div>
+        <div class="overview-caption">Fig. 5: Color-preserving stylization across diverse content and style images. Even without a reference style image, combining Colorful-Noise with ControlNet Canny enables the generation of a close reconstruction of the original image while preserving its color composition.</div>
+      </div>
+      <div class="overview-panel" style="margin-top: 20px;">
+        <div class="overview-img-wrap">
+          <img src="assets/apps/additional_style_revision.png" alt="Color-preserving stylization example 2" />
+        </div>
+        <div class="overview-caption">Fig. 6: Interpolation between the color style of the content image and the conditional style image across diverse content and style pairs.</div>
+      </div>
+
+        <div style="margin-top:28px;padding-top:18px;border-top:1px solid var(--border-soft);">
+      <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+        <li id="fn-controlnet" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">1</sup>
+          Zhang et al. <em>Adding Conditional Control to Text-to-Image Diffusion Models.</em>
+        </li>
+        <li id="fn-condbal" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">2</sup>
+          Z. Cohen et al. <em>Conditional Balance: Improving Multi-Conditioning Trade-Offs in Image Generation.</em>
+          &ensp;<a href="https://nadavc220.github.io/conditional-balance.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
+        </li>
+        <li id="fn-stylealigned" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">3</sup>
+          Hertz &amp; Voynov et al. <em>Style Aligned Image Generation via Shared Attention.</em>
+          &ensp;<a href="https://style-aligned-gen.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+    </div>
     </div>
   </div>
 </section>
