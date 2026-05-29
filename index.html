@@ -63,7 +63,6 @@
     .btn-primary:hover { background: #333; border-color: #333; }
     .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-    /* EDIT 1 FIX: center teaser image */
     .teaser-panel { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
     .teaser-img-wrap { width: 100%; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
     .teaser-img-wrap img { display: block; max-width: 100%; height: auto; margin: 0 auto; object-fit: contain; }
@@ -79,7 +78,6 @@
     h2 { font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 20px; }
     .body-text { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
 
-    /* EDIT 3: Denoising diagram styles */
     .denoising-diagram { margin-top: 36px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
     .dn-inner { padding: 28px 32px 24px; display: flex; flex-direction: column; gap: 0; }
     .dn-row-wrap { display: flex; flex-direction: column; }
@@ -94,10 +92,8 @@
     .dn-cond-img-ph { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; }
     .dn-cond-img-ph svg { opacity: 0.25; }
     .dn-cond-lbl { font-size: 10px; font-weight: 600; text-align: center; line-height: 1.2; }
-    /* horizontal arrow from cond to first step */
     .dn-h-arrow { display: flex; align-items: center; flex-shrink: 0; }
     .dn-h-arrow svg { display: block; }
-    /* steps track */
     .dn-steps { display: flex; align-items: center; flex: 1; }
     .dn-step-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
     .dn-top-zone { height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 100%; }
@@ -106,19 +102,15 @@
     .dn-step-box-ph { font-size: 9px; color: var(--text-faint); text-align: center; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
     .dn-step-box-ph svg { opacity: 0.2; }
     .dn-step-lbl { font-size: 10px; color: var(--text-faint); margin-top: 5px; font-weight: 500; font-family: Georgia, serif; font-style: italic; }
-    /* inter-step arrows */
     .dn-step-arrow { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
     .dn-step-arrow-pad { height: 52px; }
-    /* down arrow into step (strict) */
     .dn-down-arrow { display: flex; flex-direction: column; align-items: center; }
     .dn-down-shaft { width: 2px; height: 14px; border-radius: 1px; }
     .dn-down-head { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; }
-    /* small inject thumb */
     .dn-inject-thumb { border-radius: 6px; overflow: hidden; border: 1.5px solid var(--border); background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
     .dn-inject-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .dn-inject-thumb-ph { display: flex; align-items: center; justify-content: center; padding: 3px; }
     .dn-inject-thumb-ph svg { opacity: 0.2; }
-    /* output box */
     .dn-out-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
     .dn-out-pad { height: 52px; }
     .dn-out-box { width: 72px; height: 72px; border-radius: 10px; overflow: hidden; border: 2px solid var(--border); background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
@@ -126,9 +118,7 @@
     .dn-out-box-ph { font-size: 9px; color: var(--text-faint); text-align: center; padding: 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
     .dn-out-box-ph svg { opacity: 0.2; }
     .dn-out-lbl { font-size: 10px; color: var(--text-faint); font-weight: 600; margin-top: 5px; font-family: Georgia, serif; font-style: italic; }
-    /* divider between rows */
     .dn-divider { height: 1px; background: var(--border-soft); margin: 22px 0; }
-    /* legend + caption */
     .dn-legend { display: flex; gap: 20px; flex-wrap: wrap; padding: 12px 32px; border-top: 1px solid var(--border-soft); background: var(--bg); }
     .dn-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
     .dn-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -136,7 +126,6 @@
 
     .motivation-highlight { margin-top: 20px; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; font-size: 14px; color: var(--accent-dark); line-height: 1.7; }
 
-    /* EDIT 2: overview figure */
     .overview-panel { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); margin-top: 28px; }
     .overview-img-wrap { width: 100%; background: var(--tag-bg); display: flex; align-items: center; justify-content: center; }
     .overview-img-wrap img { display: block; max-width: 100%; height: auto; margin: 0 auto; object-fit: contain; }
@@ -236,15 +225,75 @@
     .fade-up-d2 { animation-delay: 0.2s; }
     .fade-up-d3 { animation-delay: 0.3s; }
     .fade-up-d4 { animation-delay: 0.4s; }
+
     @media (max-width: 900px) {
       .toggle-grid-cols-4, .toggle-grid-cols-5 { grid-template-columns: repeat(3, 1fr); }
       nav { display: none; }
       .container { padding: 0 20px; }
-      .freq-stage { height: 740px; }
       .dn-inner { padding: 18px 16px 16px; }
     }
     @media (max-width: 560px) {
       .toggle-grid-cols-4, .toggle-grid-cols-5 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Mobile layout for freq demo ── */
+    @media (max-width: 768px) {
+      .freq-row-labels { display: none; }
+      .freq-stage {
+        height: auto !important;
+        position: static;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .freq-arrows-svg { display: none; }
+      .freq-cond-block {
+        position: static !important;
+        transform: none !important;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+      }
+      .freq-cond-card { width: 110px; flex-shrink: 0; }
+      .freq-cond-desc { max-width: none; text-align: left; font-size: 13px; }
+      .freq-out-card {
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        animation: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+      }
+      .freq-out-card.freq-hovered { transform: none !important; box-shadow: var(--shadow) !important; }
+      .freq-prompt-overlay { display: none; }
+      .freq-mobile-group { display: flex; flex-direction: column; gap: 10px; }
+      .freq-mobile-group-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-soft);
+      }
+      .freq-mobile-group-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 20px;
+      }
+      .freq-mobile-group-label.lf { color: #2271a3; background: #dff0f7; border: 1px solid #b8d9ea; }
+      .freq-mobile-group-label.hf { color: #6139a8; background: #ede5f7; border: 1px solid #d8cef0; }
+      .freq-mobile-outputs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .freq-out-footer { font-size: 10px; padding: 4px 4px 5px; }
+    }
+    @media (max-width: 420px) {
+      .freq-mobile-outputs { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -276,7 +325,6 @@
     </div>
     <div class="hero-meta fade-up fade-up-d1">
 
-      <!-- Authors row: names centered -->
       <div class="authors">
         <span class="author" style="background:#fce8e4;border-color:#e09484;">
           <a href="https://nadavc220.github.io/" target="_blank">Nadav Z. Cohen</a>
@@ -289,7 +337,6 @@
         </span>
       </div>
 
-      <!-- Affiliation row: logo + lab name + institution -->
       <div class="affil-row">
         <div class="affil-logo">
           <img src="assets/lab_logo.png" alt="Canvas Lab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
@@ -302,13 +349,11 @@
         </div>
       </div>
 
-      <!-- Buttons -->
       <div class="links">
         <a class="btn btn-primary" href="https://arxiv.org/abs/2605.00548">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
           Paper (Arxiv)
         </a>
-        <!-- NEW: Paper (PDF) button -->
         <a class="btn btn-primary" href="assets/paper.pdf" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><polyline points="9,9 10,9"/></svg>
           Paper (PDF)
@@ -317,19 +362,17 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
           Code
         </a>
-        <!-- NEW: Colorful Sketches Dataset button -->
         <a class="btn" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
           Colorful Sketches Dataset
         </a>
-        <a class="btn" href="https://youtu.be/6HpK2lZfnU0"">
+        <a class="btn" href="https://youtu.be/6HpK2lZfnU0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
           Video
         </a>
       </div>
     </div>
 
-    <!-- EDIT 1: teaser panel with centered image -->
     <div class="teaser-panel fade-up fade-up-d2" style="margin-top: 16px;">
       <div class="teaser-img-wrap">
         <img src="assets/teaser.png" alt="Teaser" />
@@ -344,43 +387,6 @@
   </div>
 </div>
 
-<!-- Motivation -->
-<!-- <div id="motivation" class="motivation-section">
-  <div class="container">
-    <p class="section-tag">Motivation</p> -->
-
-    <!--
-    ═══════════════════════════════════════════════════════════════════
-    COMMENTED OUT: "Loose Conditioning vs. Strict Conditioning" section
-    ═══════════════════════════════════════════════════════════════════
-
-    <h2>Loose Conditioning vs. Strict Conditioning</h2>
-    <p class="body-text">
-      Visual conditioning methods differ fundamentally in how tightly they constrain the generation process. <em>Strict</em> conditions (edges, depth, pose) lock in fine structural details but require specialized models and limit creative diversity. <em>Loose</em> conditions &mdash; such as rough color sketches &mdash; preserve high-level intent while leaving room for the model to freely generate fine details, enabling richer variability from a single input.
-    </p>
-
-    <!-- EDIT 3: Denoising process diagram (built by buildDenoisingDiagram()) -->
-    <!--
-    <div class="denoising-diagram">
-      <div class="dn-inner" id="dn-inner"></div>
-      <div class="dn-legend">
-        <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#4a9ab5;"></div><span>Loose &mdash; prior injected once at x<sub>T</sub></span></div>
-        <div class="dn-legend-item"><div class="dn-legend-dot" style="background:#c8502a;"></div><span>Strict &mdash; signal injected at every step</span></div>
-      </div>
-      <div class="dn-caption">Fig. 2: <strong>Top row (Loose):</strong> The color/structure prior enters only at the first (noisiest) step x<sub>T</sub>, steering global palette and composition while fine details remain free. <strong>Bottom row (Strict):</strong> The conditioning signal (e.g. edge map) is injected at <em>every</em> denoising step, tightly locking structural detail throughout the full trajectory.</div>
-    </div>
-
-    <div class="motivation-highlight" style="margin-top: 32px;">
-      Key insight: Low-frequency conditions preserve high-level structure and color intent while leaving enough freedom for diverse, creative, and user-driven generation &mdash; with zero additional training.
-    </div>
-
-    END COMMENTED SECTION
-    ═══════════════════════════════════════════════════════════════════
-    -->
-<!-- 
-  </div>
-</div> -->
-
 <!-- Frequency Demo -->
 <div class="freq-demo-section" id="freq-demo">
   <div class="container">
@@ -392,7 +398,6 @@
       In this work, we leverage this property to condition image generation using an initial sketch. By constraining only the low frequencies, we preserve the overall structure while allowing the model to freely generate details. As shown below, this enables image generation from colorful sketches that naturally resemble the early stages of drawing.
 
       In contrast, traditional conditioning methods such as ControlNet often rely on detailed conditions, resulting in rigid generations with limited diversity, where variations are mostly restricted to low-frequency properties like color. Moreover, because these methods constrain the entire diffusion process, they can reduce output quality. Conditioning only the initial noise preserves generation flexibility and maintains image quality.
-
     </p>
     <div class="freq-row-labels">
       <span class="freq-side-label lf">Low-frequency outputs</span>
@@ -435,7 +440,7 @@
   </div>
 </div>
 
-<!-- EDIT 2: Method — overview.png as a figure panel -->
+<!-- Method -->
 <section id="method">
   <div class="container">
     <p class="section-tag">Method</p>
@@ -448,8 +453,7 @@
       </div>
       <div class="overview-caption">Fig. 3: Overview of Colorful-Noise. Given an input color prior, we extract its low-frequency component via frequency decomposition and inject it into the initial noise tensor. The modified noise is fed directly into a standard text-to-image diffusion model &mdash; no changes to the model or sampling procedure required.</div>
     </div>
-
-    </div>
+  </div>
 </section>
 
 <!-- Results -->
@@ -527,7 +531,7 @@
         <div class="overview-img-wrap">
           <img src="assets/apps/alignment_revision.png" alt="Color-based style alignment results" />
         </div>
-        <div class="overview-caption">Fig. 4: Color-based style alignment. Left: reference style image used as a color prior. Right: generated outputs conditioned on its low-frequency palette across varied text prompts, demonstrating consistent color-mood alignment without structural imitation. Bottom reference © Augustin Arroyo (@flowalistic on Instagram). All rights reserved.</div>
+        <div class="overview-caption">Fig. 4: Color-based style alignment. Left: reference style image used as a color prior. Right: generated outputs conditioned on its low-frequency palette across varied text prompts, demonstrating consistent color-mood alignment without structural imitation. Bottom reference &copy; Augustin Arroyo (@flowalistic on Instagram). All rights reserved.</div>
       </div>
     </div>
 
@@ -535,9 +539,9 @@
 
     <div class="app-subsection">
       <h3 class="app-subsection-title">Color-Preserving Stylization</h3>
-        <p class="app-subsection-desc">
-          Colorful-Noise can be effectively combined with other conditioning methods, such as Canny edge maps (via ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup>) and stylization techniques (e.g., Conditional Balanced<sup><a href="#fn-condbal" style="color:var(--accent);text-decoration:none;font-weight:500;">2</a></sup> Style-Aligned<sup><a href="#fn-stylealigned" style="color:var(--accent);text-decoration:none;font-weight:500;">3</a></sup>). As demonstrated, given a content image whose colors should be preserved, Colorful-Noise retains its low-frequency information, while ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup> constrains the high-frequency structural details. When stylization is applied, the resulting image preserves the original content colors while transferring the texture and geometric characteristics of the reference style. Furthermore, the strength of this effect can be controlled through linear interpolation between Colorful-Noise and white noise, enabling a gradual transition between content preservation and generative flexibility.
-        </p>
+      <p class="app-subsection-desc">
+        Colorful-Noise can be effectively combined with other conditioning methods, such as Canny edge maps (via ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup>) and stylization techniques (e.g., Conditional Balanced<sup><a href="#fn-condbal" style="color:var(--accent);text-decoration:none;font-weight:500;">2</a></sup> Style-Aligned<sup><a href="#fn-stylealigned" style="color:var(--accent);text-decoration:none;font-weight:500;">3</a></sup>). As demonstrated, given a content image whose colors should be preserved, Colorful-Noise retains its low-frequency information, while ControlNet<sup><a href="#fn-controlnet" style="color:var(--accent);text-decoration:none;font-weight:500;">1</a></sup> constrains the high-frequency structural details. When stylization is applied, the resulting image preserves the original content colors while transferring the texture and geometric characteristics of the reference style. Furthermore, the strength of this effect can be controlled through linear interpolation between Colorful-Noise and white noise, enabling a gradual transition between content preservation and generative flexibility.
+      </p>
       <div class="overview-panel">
         <div class="overview-img-wrap">
           <img src="assets/apps/stylyzation_revision.png" alt="Color-preserving stylization example 1" />
@@ -551,26 +555,24 @@
         <div class="overview-caption">Fig. 6: Interpolation between the color style of the content image and the conditional style image across diverse content and style pairs.</div>
       </div>
 
-        <div style="margin-top:28px;padding-top:18px;border-top:1px solid var(--border-soft);">
-      <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
-        <li id="fn-controlnet" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
-          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">1</sup>
-          Zhang et al. <em>Adding Conditional Control to Text-to-Image Diffusion Models.</em>
-        </li>
-        <li id="fn-condbal" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
-          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">2</sup>
-          Z. Cohen et al. <em>Conditional Balance: Improving Multi-Conditioning Trade-Offs in Image Generation.</em>
-          &ensp;<a href="https://nadavc220.github.io/conditional-balance.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
-        </li>
-        <li id="fn-stylealigned" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
-          <sup style="color:var(--accent);font-weight:500;margin-right:4px;">3</sup>
-          Hertz &amp; Voynov et al. <em>Style Aligned Image Generation via Shared Attention.</em>
-          &ensp;<a href="https://style-aligned-gen.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
-        </li>
-      </ol>
-    </div>
-  </div>
-    </div>
+      <div style="margin-top:28px;padding-top:18px;border-top:1px solid var(--border-soft);">
+        <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;">
+          <li id="fn-controlnet" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+            <sup style="color:var(--accent);font-weight:500;margin-right:4px;">1</sup>
+            Zhang et al. <em>Adding Conditional Control to Text-to-Image Diffusion Models.</em>
+          </li>
+          <li id="fn-condbal" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+            <sup style="color:var(--accent);font-weight:500;margin-right:4px;">2</sup>
+            Z. Cohen et al. <em>Conditional Balance: Improving Multi-Conditioning Trade-Offs in Image Generation.</em>
+            &ensp;<a href="https://nadavc220.github.io/conditional-balance.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
+          </li>
+          <li id="fn-stylealigned" style="font-size:13px;color:var(--text-faint);line-height:1.6;">
+            <sup style="color:var(--accent);font-weight:500;margin-right:4px;">3</sup>
+            Hertz &amp; Voynov et al. <em>Style Aligned Image Generation via Shared Attention.</em>
+            &ensp;<a href="https://style-aligned-gen.github.io/" target="_blank" style="color:var(--accent);text-decoration:none;font-size:12px;border-bottom:1px solid var(--accent);padding-bottom:1px;">Project page ↗</a>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
@@ -611,20 +613,20 @@ const FREQ_DATA = {
   hfSrc: 'assets/low_vs_high/bear_edges.png',
   lfLabel: 'Color prior', hfLabel: 'Edge map',
   lfDesc: 'Color + structure condition', hfDesc: 'Edge + texture condition',
-  insight: '<strong style="font-weight:500">Low-frequency conditioning</strong> reliably steers the global color palette and composition \u2014 every output faithfully inherits the hue from the prior while the prompt freely shapes the subject. <strong style="font-weight:500">High-frequency conditioning</strong> only constrains fine edges and textures; the overall palette and composition drift unpredictably across prompts.',
+  insight: 'Low-frequency conditioning constrains only the global structure and colors of the generated image, allowing flexibility across prompts and styles. In contrast, high-frequency conditioning enforces fine details, producing more constrained outputs and reducing generative freedom.',
   lfOutputs: [
-    { src: 'assets/low_vs_high/sea_lion.png',   label: 'Sea-Lion',  prompt: '"A glass blown sculpture of a sea lion swimming under water"' },
-    { src: 'assets/low_vs_high/red_panda.png', label: 'Red Panda',    prompt: '"A Ukiyo-e illustration of a red panda on a tree in style of Utagawa Kuniyoshi"' },
-    { src: 'assets/low_vs_high/hippo_low.png',  label: 'Hippopotamus',   prompt: '"A watercolor painting of a hippopotamus in a lake in the style of Winslow Homer"' },
-    { src: 'assets/low_vs_high/moose_gogh.png', label: 'Moose', prompt: '"An oil painting of a bull moose in the style of van-Gogh"' },
+    { src: 'assets/low_vs_high/sea_lion.png',   label: 'Sea-Lion',     prompt: '"A glass blown sculpture of a sea lion swimming under water"' },
+    { src: 'assets/low_vs_high/red_panda.png',  label: 'Red Panda',    prompt: '"A Ukiyo-e illustration of a red panda on a tree in style of Utagawa Kuniyoshi"' },
+    { src: 'assets/low_vs_high/hippo_low.png',  label: 'Hippopotamus', prompt: '"A watercolor painting of a hippopotamus in a lake in the style of Winslow Homer"' },
+    { src: 'assets/low_vs_high/moose_gogh.png', label: 'Moose',        prompt: '"An oil painting of a bull moose in the style of van-Gogh"' },
     { src: 'assets/low_vs_high/bear_low.png',   label: 'Grizzly Bear', prompt: '"a grizzly bear in the forest"' },
   ],
   hfOutputs: [
-    { src: 'assets/low_vs_high/grizzly.png', label: 'Grizzly Bear',     prompt: '"a grizzly bear in the forest"' },
-    { src: 'assets/low_vs_high/black.png',   label: 'Black Bear', prompt: '"a black bear in the forest"' },
+    { src: 'assets/low_vs_high/grizzly.png', label: 'Grizzly Bear', prompt: '"a grizzly bear in the forest"' },
+    { src: 'assets/low_vs_high/black.png',   label: 'Black Bear',   prompt: '"a black bear in the forest"' },
     { src: 'assets/low_vs_high/blue.png',    label: 'Blue Bear',    prompt: '"a blue bear in the forest"' },
-    { src: 'assets/low_vs_high/panda.png',   label: 'Giant Panda',   prompt: '"a giant panda in the forest"' },
-    { src: 'assets/low_vs_high/polar.png',   label: 'Polar Bear',  prompt: '"a polar bear in the forest"' },
+    { src: 'assets/low_vs_high/panda.png',   label: 'Giant Panda',  prompt: '"a giant panda in the forest"' },
+    { src: 'assets/low_vs_high/polar.png',   label: 'Polar Bear',   prompt: '"a polar bear in the forest"' },
   ],
 };
 
@@ -637,11 +639,8 @@ function freqLoadImg(imgEl, phEl, src) {
 
 function freqRender() {
   const d = FREQ_DATA;
+  const isMobile = window.innerWidth <= 768;
   const stage = document.getElementById('freq-stage');
-  const stageW = stage.offsetWidth || 1100;
-  const stageH = 680;
-  const condW = 160;
-  const gap = 20;
 
   freqLoadImg(document.getElementById('freq-cond-lf-img'), document.getElementById('freq-cond-lf-ph'), d.lfSrc);
   freqLoadImg(document.getElementById('freq-cond-hf-img'), document.getElementById('freq-cond-hf-ph'), d.hfSrc);
@@ -650,6 +649,64 @@ function freqRender() {
   document.getElementById('freq-cond-lf-desc').textContent = d.lfDesc;
   document.getElementById('freq-cond-hf-desc').textContent = d.hfDesc;
   document.getElementById('freq-insight').innerHTML = d.insight;
+
+  stage.querySelectorAll('.freq-out-card, .freq-mobile-group').forEach(e => e.remove());
+  document.getElementById('freq-arrow-svg').querySelectorAll('path.freq-arrow-line').forEach(e => e.remove());
+
+  if (isMobile) {
+    const lfCondEl = document.getElementById('freq-cond-lf');
+    const hfCondEl = document.getElementById('freq-cond-hf');
+    lfCondEl.style.cssText = '';
+    hfCondEl.style.cssText = '';
+
+    function makeMobileGroup(outputs, cls, labelText, labelCls) {
+      const group = document.createElement('div');
+      group.className = 'freq-mobile-group';
+
+      const header = document.createElement('div');
+      header.className = 'freq-mobile-group-header';
+      const badge = document.createElement('span');
+      badge.className = 'freq-mobile-group-label ' + labelCls;
+      badge.textContent = labelText;
+      header.appendChild(badge);
+      group.appendChild(header);
+
+      const outputsGrid = document.createElement('div');
+      outputsGrid.className = 'freq-mobile-outputs';
+      outputs.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'freq-out-card ' + cls;
+        const wrap = document.createElement('div');
+        wrap.className = 'freq-out-img-wrap';
+        const ph = document.createElement('div');
+        ph.className = 'freq-ph-icon';
+        ph.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>';
+        const img = document.createElement('img');
+        img.alt = item.label; img.style.display = 'none';
+        img.onload = () => { img.style.display = 'block'; ph.style.display = 'none'; };
+        img.onerror = () => { img.style.display = 'none'; ph.style.display = 'flex'; };
+        img.src = item.src;
+        wrap.appendChild(ph); wrap.appendChild(img);
+        const footer = document.createElement('div');
+        footer.className = 'freq-out-footer';
+        footer.textContent = item.label;
+        card.appendChild(wrap); card.appendChild(footer);
+        outputsGrid.appendChild(card);
+      });
+      group.appendChild(outputsGrid);
+      stage.appendChild(group);
+    }
+
+    makeMobileGroup(d.lfOutputs, 'lf-out', 'Low-frequency outputs', 'lf');
+    makeMobileGroup(d.hfOutputs, 'hf-out', 'High-frequency outputs', 'hf');
+    return;
+  }
+
+  /* ── desktop: original absolute-positioning logic ── */
+  const stageW = stage.offsetWidth || 1100;
+  const stageH = 680;
+  const condW = 160;
+  const gap = 20;
 
   const lfCondEl = document.getElementById('freq-cond-lf');
   const hfCondEl = document.getElementById('freq-cond-hf');
@@ -663,9 +720,6 @@ function freqRender() {
   const condY = stageH / 2;
   const lfOriginX = lfCondLeft + condW / 2;
   const hfOriginX = hfCondLeft + condW / 2;
-
-  stage.querySelectorAll('.freq-out-card').forEach(e => e.remove());
-  document.getElementById('freq-arrow-svg').querySelectorAll('path.freq-arrow-line').forEach(e => e.remove());
 
   const outW = 148;
   const N = 5;
@@ -720,7 +774,7 @@ function freqRadialArrow(x1, y1, x2, y2, angle, color, markerId) {
 function freqBindHover(ownCards, ownArrows, ownCondEl, otherCards, otherArrows, otherCondEl) {
   ownCards.forEach((card, idx) => {
     card.addEventListener('mouseenter', () => {
-      ownCards.forEach((c, j) => { c.classList.toggle('freq-hovered', c === card); c.classList.toggle('freq-blurred', c !== card); });
+      ownCards.forEach((c) => { c.classList.toggle('freq-hovered', c === card); c.classList.toggle('freq-blurred', c !== card); });
       otherCards.forEach(c => { c.classList.add('freq-blurred'); c.classList.remove('freq-hovered'); });
       ownArrows.forEach((a, j) => { if (!a) return; a.style.opacity = j === idx ? '0.9' : '0.06'; a.style.filter = j === idx ? 'none' : 'blur(2px)'; });
       otherArrows.forEach(a => { if (a) { a.style.opacity = '0.06'; a.style.filter = 'blur(2px)'; } });
@@ -789,8 +843,10 @@ function buildToggleGrid(containerId, items) {
     grid.appendChild(card);
   });
   const GRID_TO_TOGGLE = {
-    'grid-color': 'toggle-color', 'grid-prompt': 'toggle-prompt',
-    'grid-seed': 'toggle-seed', 'grid-general': 'toggle-general',
+    'grid-color':   'toggle-color',
+    'grid-prompt':  'toggle-prompt',
+    'grid-seed':    'toggle-seed',
+    'grid-general': 'toggle-general',
   };
   cards.forEach((card) => {
     card.addEventListener('click', () => {
@@ -804,21 +860,21 @@ function buildToggleGrid(containerId, items) {
 }
 
 function syncSubsectionToggle(toggleId, showing) {
-    const ind = document.getElementById(toggleId);
-    if (!ind) return;
-    const inputPill  = ind.querySelector('.gti-pill-input');
-    const resultPill = ind.querySelector('.gti-pill-result');
-    const dots = ind.querySelectorAll('.gti-dot');
-    if (showing) {
-      inputPill.style.background  = 'var(--tag-bg)';  inputPill.style.color  = 'var(--text-faint)';
-      resultPill.style.background = 'var(--accent)';  resultPill.style.color = '#fff';
-      dots.forEach(d => d.style.background = 'var(--accent)');
-    } else {
-      inputPill.style.background = ''; inputPill.style.color = '';
-      resultPill.style.background = ''; resultPill.style.color = '';
-      dots.forEach(d => d.style.background = '');
-    }
+  const ind = document.getElementById(toggleId);
+  if (!ind) return;
+  const inputPill  = ind.querySelector('.gti-pill-input');
+  const resultPill = ind.querySelector('.gti-pill-result');
+  const dots = ind.querySelectorAll('.gti-dot');
+  if (showing) {
+    inputPill.style.background  = 'var(--tag-bg)';  inputPill.style.color  = 'var(--text-faint)';
+    resultPill.style.background = 'var(--accent)';  resultPill.style.color = '#fff';
+    dots.forEach(d => d.style.background = 'var(--accent)');
+  } else {
+    inputPill.style.background = ''; inputPill.style.color = '';
+    resultPill.style.background = ''; resultPill.style.color = '';
+    dots.forEach(d => d.style.background = '');
   }
+}
 
 function showPlaceholder(wrap, src) {
   if (!wrap || wrap.querySelector('.img-ph')) return;
@@ -893,7 +949,11 @@ buildToggleGrid('grid-general', [
 /* ─── BibTeX copy ─── */
 function copyBibtex() {
   const text = document.getElementById('bibtex-box').innerText.replace('Copy\n', '');
-  navigator.clipboard.writeText(text).then(() => { const btn = document.querySelector('.copy-btn'); btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); });
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
 }
 </script>
 </body>
